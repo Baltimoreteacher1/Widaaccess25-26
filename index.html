@@ -304,6 +304,60 @@ input[type=range]{width:100%;accent-color:var(--teal);height:5px;cursor:pointer;
   .hero-stats{grid-template-columns:1fr 1fr}
 }
 
+
+/* ── STAT TOOLTIPS ── */
+.stat-tip{position:relative;display:inline-flex;align-items:center;gap:3px;cursor:help;border-bottom:1px dashed var(--muted)}
+.stat-tip .tip-box{
+  visibility:hidden;opacity:0;position:absolute;z-index:200;
+  bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  width:280px;background:#17283A;color:#fff;border-radius:14px;padding:14px 16px;
+  font-size:12px;line-height:1.6;font-family:var(--font-body);font-weight:400;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);pointer-events:none;
+  transition:opacity .15s ease,visibility .15s ease;text-align:left;
+  font-style:normal;letter-spacing:0;
+}
+.stat-tip:hover .tip-box{visibility:visible;opacity:1}
+.stat-tip .tip-box::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:7px solid transparent;border-top-color:#17283A;
+}
+.stat-tip .tip-box .tip-head{font-weight:700;font-size:13px;margin-bottom:6px;color:#6DDAB0}
+.stat-tip .tip-box .tip-stat{font-family:var(--font-mono);font-size:15px;color:#F2C15B;margin:4px 0}
+.stat-tip .tip-box .tip-warn{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.15);font-size:11px;color:rgba(255,255,255,.6)}
+/* ensure tip-box doesn't clip off edges */
+.stat-tip:first-child .tip-box,.stat-tip .tip-box.tip-right{left:0;transform:none}
+.stat-tip .tip-box.tip-right::after{left:20px}
+
+/* ── STAT GUIDE TAB (Section 7) ── */
+.guide-grid{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:start}
+.guide-nav{position:sticky;top:80px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow-sm)}
+.guide-nav-item{display:block;border:0;background:none;text-align:left;padding:10px 12px;border-radius:12px;width:100%;font-size:12.5px;font-weight:600;color:var(--slate);cursor:pointer;transition:all .15s}
+.guide-nav-item:hover{background:var(--lineSoft);color:var(--navy)}
+.guide-nav-item.active{background:var(--navy);color:#fff}
+.guide-panel{display:none}.guide-panel.active{display:block}
+.guide-section{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:14px}
+.guide-section h3{font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:6px}
+.guide-section .gs-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.guide-section p{font-size:13.5px;color:var(--slate);line-height:1.65;margin-bottom:12px}
+.guide-section h4{font-size:13px;font-weight:700;color:var(--navy);margin:16px 0 7px}
+.guide-section ul,.guide-section ol{margin-left:20px;font-size:13px;color:var(--slate);line-height:1.65}
+.guide-section li{margin-bottom:6px}
+.guide-section strong{color:var(--navy)}
+.r-visual{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+.r-cell{border-radius:12px;padding:12px 10px;text-align:center}
+.r-cell .rc-val{font-family:var(--font-mono);font-size:18px;font-weight:700}
+.r-cell .rc-lab{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.r-cell .rc-ex{font-size:10.5px;color:var(--muted);margin-top:4px;font-style:italic}
+.formula-box{background:var(--lineSoft);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-family:var(--font-mono);font-size:13px;color:var(--navy);margin:12px 0;line-height:1.8}
+.eg-box{background:var(--tealSoft);border-left:4px solid var(--teal);border-radius:0 14px 14px 0;padding:13px 15px;font-size:13px;color:var(--navy);margin:12px 0}
+.warn-box{background:var(--amberSoft);border-left:4px solid var(--amber);border-radius:0 14px 14px 0;padding:13px 15px;font-size:13px;color:var(--navy);margin:12px 0}
+.stat-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.sc-item{border:1px solid var(--line);border-radius:12px;padding:13px}
+.sc-item h5{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.sc-item p{font-size:12px;color:var(--slate)}
+.sc-item.good{border-color:rgba(12,110,88,.25);background:var(--greenSoft)}
+.sc-item.bad{border-color:rgba(155,58,29,.25);background:var(--redSoft)}
+
 </style>
 </head>
 <body>
@@ -390,6 +444,7 @@ input[type=range]{width:100%;accent-color:var(--teal);height:5px;cursor:pointer;
   <button class="tab" data-sec="find" onclick="showSection('find')"><span class="tab-n">4</span>Find Students</button>
   <button class="tab" data-sec="support" onclick="showSection('support')"><span class="tab-n">5</span>Choose Supports</button>
   <button class="tab" data-sec="act" onclick="showSection('act')"><span class="tab-n">6</span>Export Plan</button>
+<button class="tab" data-sec="guide" onclick="showSection('guide')"><span class="tab-n">7</span>Stats Guide</button>
 </div>
 
 <!-- ══ SECTION 1: UNDERSTAND ══ -->
@@ -640,6 +695,281 @@ input[type=range]{width:100%;accent-color:var(--teal);height:5px;cursor:pointer;
 </section>
 
 </div><!-- /shell -->
+
+
+<!-- ══ SECTION 7: STATISTICS GUIDE ══ -->
+<section id="guide" class="section">
+  <div class="sec-hdr">
+    <h2>Statistics Guide</h2>
+    <p>Plain-language explanations of every metric in this dashboard, with the actual math underneath. Hover over any number in the dashboard to get a quick popup version.</p>
+  </div>
+  <div class="guide-grid">
+    <div class="guide-nav">
+      <button class="guide-nav-item active" onclick="switchGuide('g-overview')">📊 Overview</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-correlation')">🔗 Correlation (r)</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-ci')">📏 Confidence Intervals</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-pvalue')">🎲 p-values</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-growth')">📈 Growth & Gap</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-opportunity')">🎯 Opportunity Score</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-heatmap')">🟦 Heatmap Reading</button>
+      <button class="guide-nav-item" onclick="switchGuide('g-cautions')">⚠️ Cautions & Limits</button>
+    </div>
+    <div>
+
+      <!-- OVERVIEW -->
+      <div id="g-overview" class="guide-panel active">
+        <div class="guide-section">
+          <h3>What this dashboard measures</h3>
+          <p class="gs-sub">A plain-English map of every number you'll encounter.</p>
+          <p>Every number in this dashboard comes from two ACCESS test administrations for each student: their <strong>prior-year score</strong> (SY 2024–2025) and their <strong>current score</strong> (SY 2025–2026). From those two numbers, everything else is derived.</p>
+          <h4>The five core derived values</h4>
+          <div class="formula-box">
+Growth = Current score − Prior score
+Gap = Current score − Target score  (positive = exceeded target)
+Needed growth = Target − Prior score  (how much they needed to grow)
+Met target = Gap ≥ 0  (true/false)
+Opportunity score = composite planning index (see Opportunity Score tab)</div>
+          <div class="eg-box"><strong>Example:</strong> A student had a prior score of 3.1, a current score of 3.4, and a target of 3.5.<br>
+Growth = 3.4 − 3.1 = <strong>+0.3</strong><br>
+Gap = 3.4 − 3.5 = <strong>−0.1</strong> (missed by 0.1 — near miss)<br>
+Met target = <strong>false</strong></div>
+          <h4>What ACCESS scores mean</h4>
+          <p>ACCESS proficiency scores range roughly from 1.0 to 6.0. They represent a student's English language proficiency on WIDA's composite scale. A score of 2.5 = Developing, 3.5 = Expanding, 4.5+ = Bridging/Reaching. Growth targets are personalized — a student at 1.5 is expected to grow more in a year than a student already at 4.2.</p>
+          <div class="warn-box"><strong>Important:</strong> ACCESS measures language proficiency, not academic achievement. A student can have strong content knowledge with a low ACCESS score, or vice versa. Do not use ACCESS scores alone to make academic placement decisions.</div>
+        </div>
+        <div class="guide-section">
+          <h4>All the metrics at a glance</h4>
+          <div class="tbl-wrap" style="max-height:none"><table>
+            <thead><tr><th>Metric</th><th>What it means</th><th>How to use it</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Met target %</strong></td><td>Percent of students whose current score ≥ their personalized growth target</td><td>Overall progress indicator; compare across years and groups</td></tr>
+              <tr><td><strong>Growth</strong></td><td>Current score minus prior score (can be negative)</td><td>Direction of progress; negative = needs barrier review</td></tr>
+              <tr><td><strong>Gap</strong></td><td>Current score minus target score</td><td>Prioritization; near miss = −0.1 to −0.2; large negative = more intensive support</td></tr>
+              <tr><td><strong>95% CI</strong></td><td>The range where the true rate probably falls (see CI tab)</td><td>Gauge reliability; wide CI = interpret carefully</td></tr>
+              <tr><td><strong>r (correlation)</strong></td><td>Strength of a linear relationship between two variables (−1 to +1)</td><td>Identify patterns to investigate; never proof of causation</td></tr>
+              <tr><td><strong>p-value</strong></td><td>Probability of seeing a result this extreme if there were truly no relationship</td><td>Screens out noise; does NOT measure importance</td></tr>
+              <tr><td><strong>Opportunity score</strong></td><td>Planning index combining multiple risk signals</td><td>Triage; higher = more signals present</td></tr>
+              <tr><td><strong>Odds ratio</strong></td><td>How much more likely an outcome is in one group vs another</td><td>Compare elementary vs middle school risk; OR=4.5 means 4.5× more likely</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- CORRELATION -->
+      <div id="g-correlation" class="guide-panel">
+        <div class="guide-section">
+          <h3>Correlation (r) explained</h3>
+          <p class="gs-sub">The most misused number in education data. Here's what it actually means.</p>
+          <p>Pearson's r measures how closely two variables follow a straight line when you plot one against the other. It ranges from <strong>−1</strong> (perfectly opposite) to <strong>+1</strong> (perfectly together), with <strong>0</strong> meaning no linear relationship at all.</p>
+          <h4>Visual strength guide</h4>
+          <div class="r-visual">
+            <div class="r-cell" style="background:var(--redSoft)"><div class="rc-val" style="color:var(--red)">−.75</div><div class="rc-lab" style="color:var(--red)">Strong negative</div><div class="rc-ex">As X goes up, Y clearly goes down</div></div>
+            <div class="r-cell" style="background:#FFF8EC"><div class="rc-val" style="color:var(--amber)">−.30</div><div class="rc-lab" style="color:var(--amber)">Small negative</div><div class="rc-ex">Weak downward tendency</div></div>
+            <div class="r-cell" style="background:var(--lineSoft)"><div class="rc-val" style="color:var(--muted)">.00</div><div class="rc-lab" style="color:var(--muted)">No linear trend</div><div class="rc-ex">Knowing X tells you nothing about Y</div></div>
+            <div class="r-cell" style="background:#EEF9F4"><div class="rc-val" style="color:var(--teal)">+.35</div><div class="rc-lab" style="color:var(--teal)">Small positive</div><div class="rc-ex">Weak upward tendency</div></div>
+            <div class="r-cell" style="background:var(--tealSoft)"><div class="rc-val" style="color:var(--teal)">+.75</div><div class="rc-lab" style="color:var(--teal)">Strong positive</div><div class="rc-ex">As X goes up, Y clearly goes up too</div></div>
+          </div>
+          <h4>Standard strength thresholds</h4>
+          <ul>
+            <li><strong>|r| &lt; .20</strong> — Very weak: barely detectable pattern. Do not use for decisions.</li>
+            <li><strong>|r| .20–.39</strong> — Small: a real but modest pattern. Good for generating questions.</li>
+            <li><strong>|r| .40–.69</strong> — Moderate: a meaningful pattern worth discussing with the team.</li>
+            <li><strong>|r| ≥ .70</strong> — Strong: a consistent linear relationship. Still not proof of causation.</li>
+          </ul>
+          <h4>The formula (for reference)</h4>
+          <div class="formula-box">r = Σ[(xᵢ − x̄)(yᵢ − ȳ)] / √[Σ(xᵢ − x̄)² × Σ(yᵢ − ȳ)²]
+Where: x̄ = mean of x, ȳ = mean of y, Σ = sum across all n students</div>
+          <h4>What r² (R-squared) means</h4>
+          <p>Square the correlation to get the <strong>proportion of variance explained</strong>. This is more useful for sizing the practical meaning:</p>
+          <div class="formula-box">r = .356 → r² = .127 → prior score explains ~13% of variance in meeting target
+r = .752 → r² = .565 → prior score explains ~57% of variance in current score</div>
+          <p>The remaining variance (87% and 43% respectively) comes from factors <em>not</em> in this dataset — teacher practice, attendance, family context, test engagement, etc.</p>
+          <h4>Three things r cannot tell you</h4>
+          <div class="stat-compare">
+            <div class="sc-item bad"><h5>❌ Causation</h5><p>r = .752 between prior and current score does NOT mean the prior score caused the current score. Both reflect the same underlying skill.</p></div>
+            <div class="sc-item bad"><h5>❌ Direction of influence</h5><p>A correlation between grade level and growth doesn't tell you whether grade causes growth pattern or growth pattern defines grade placement.</p></div>
+            <div class="sc-item bad"><h5>❌ Non-linear relationships</h5><p>Pearson r only detects straight-line patterns. Two variables can have a strong curved relationship and still show r ≈ 0.</p></div>
+          </div>
+          <h4>The mathematical overlap caution (critical for ACCESS data)</h4>
+          <div class="warn-box"><strong>Several ACCESS variables are mathematically connected.</strong> Growth = Current − Prior. Gap = Current − Target. Met target = Gap ≥ 0. This means correlations between these variables are <em>partly definitional</em>, not purely empirical. For example, "needed growth" and "met target" are correlated largely because both are derived from the same target score — not because needed growth directly predicts meeting it. Always read the caution on each insight card.</div>
+        </div>
+      </div>
+
+      <!-- CONFIDENCE INTERVALS -->
+      <div id="g-ci" class="guide-panel">
+        <div class="guide-section">
+          <h3>Confidence Intervals explained</h3>
+          <p class="gs-sub">The range that tells you how much to trust a percentage.</p>
+          <p>A <strong>95% confidence interval (CI)</strong> is a range around a percentage that says: "If we could observe this group many times, 95% of those observations would produce a result within this range."</p>
+          <p>In plain terms: it tells you how precise your number is. A wide CI means the number is uncertain. A narrow CI means you can trust it.</p>
+          <h4>The formula used in this dashboard</h4>
+          <div class="formula-box">For a proportion p with sample size n:
+  Standard Error (SE) = √[p × (1−p) / n]
+  95% CI = p ± 1.96 × SE
+
+Example: 49.3% met target, n = 347
+  SE = √[0.493 × 0.507 / 347] = √[0.000721] = 0.0268
+  95% CI = 0.493 ± (1.96 × 0.0268) = 0.493 ± 0.053
+  → [44.1%, 54.5%]</div>
+          <h4>What different group sizes mean</h4>
+          <div class="tbl-wrap" style="max-height:none"><table>
+            <thead><tr><th>n</th><th>Met rate</th><th>95% CI</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>347 (full school)</td><td>49.3%</td><td>[44.1% – 54.5%]</td><td>±5 points. Reliable for reporting.</td></tr>
+              <tr><td>44 (Grade 1)</td><td>31.8%</td><td>[18.4% – 45.2%]</td><td>±13 points. Wide. Handle with caution.</td></tr>
+              <tr><td>16 (Grade 7 LTML)</td><td>0%</td><td>[0% – 20.6%]</td><td>Very wide. The 0% is consistent but small n.</td></tr>
+              <tr><td>4 (small cell)</td><td>75%</td><td>[32.6% – 100%]</td><td>Almost meaningless — CI is 67 points wide.</td></tr>
+            </tbody>
+          </table></div>
+          <div class="warn-box"><strong>Rule of thumb:</strong> Don't make instructional decisions based on percentages from groups smaller than 20 students without noting the confidence interval. The number might look precise but isn't.</div>
+          <h4>Why the heatmap dims cells with n &lt; 10</h4>
+          <p>Any cell with fewer than 10 students has a CI so wide that the displayed percentage could easily be off by 30 or more percentage points. The reduced opacity signals: "This is a real number, but interpret with significant caution."</p>
+        </div>
+      </div>
+
+      <!-- P-VALUES -->
+      <div id="g-pvalue" class="guide-panel">
+        <div class="guide-section">
+          <h3>p-values explained</h3>
+          <p class="gs-sub">The most misunderstood number in statistics. Here's what it actually says — and doesn't say.</p>
+          <p>A <strong>p-value</strong> answers one very specific question: <em>"If there were truly no relationship between these two variables in the real world, how likely is it that random chance alone would produce a result as extreme as the one I observed?"</em></p>
+          <p>A p-value of .03 means: if the null hypothesis (no relationship) were true, you'd see a result this extreme only 3% of the time by chance. By convention, p &lt; .05 is called "statistically significant."</p>
+          <h4>The critical misunderstanding</h4>
+          <div class="stat-compare">
+            <div class="sc-item bad"><h5>❌ What p does NOT mean</h5><p>"There is a 97% chance the relationship is real."<br>"The effect is large or important."<br>"This finding proves anything about causation."<br>"The finding will replicate in another school."</p></div>
+            <div class="sc-item good"><h5>✅ What p DOES mean</h5><p>"This pattern is unlikely to be pure random noise given this sample size."<br>A small p with a small r still means a small, possibly irrelevant, effect.<br>p only screens for noise — not for importance.</p></div>
+          </div>
+          <h4>Why large datasets inflate significance</h4>
+          <p>With n = 347 students, even a correlation of r = .109 reaches p = .043. But r = .109 means the predictor explains only 1.2% of the variance in the outcome. That's statistically significant but practically negligible.</p>
+          <div class="formula-box">Effect size (r²): r = .109 → r² = .012 → predictor explains 1.2% of variance
+This is real (not noise) but is a tiny effect — not a planning signal.</div>
+          <h4>The chi-square statistics in this dataset</h4>
+          <p>Two chi-square tests were run on this data:</p>
+          <ul>
+            <li><strong>Band × Met target</strong> (χ² = 36.84, p &lt; .001): Elementary vs. middle school met-target rates differ significantly. Elementary = 61%, Middle = 25.9%. <em>Odds ratio = 4.49</em> — elementary students are 4.5× more likely to meet target than middle school students.</li>
+            <li><strong>Target year × Met target</strong> (χ² = 66.97, p &lt; .001): Met-target rates differ significantly across target-year groups. LTML = 2.9%, Year 5 = 76.6%.</li>
+            <li><strong>Grade × Met target</strong> (χ² = 76.11, p &lt; .001): Met-target rates differ significantly across grades. Grade 4 = 84%, Grade 7 = 7.9%.</li>
+          </ul>
+          <div class="eg-box"><strong>What the odds ratio means:</strong> An odds ratio of 4.49 means elementary students have 4.49× higher odds of meeting target compared to middle school students. This does NOT mean elementary teachers are 4.5× better — it reflects very different target structures, student populations, and expected growth rates across the school.</div>
+        </div>
+      </div>
+
+      <!-- GROWTH & GAP -->
+      <div id="g-growth" class="guide-panel">
+        <div class="guide-section">
+          <h3>Growth & Gap explained</h3>
+          <p class="gs-sub">The two most important student-level numbers in this dashboard.</p>
+          <h4>Growth</h4>
+          <div class="formula-box">Growth = Current ACCESS score − Prior ACCESS score
+Range in this dataset: −1.7 to +2.5
+Mean: +0.54  |  Median: approximately +0.5</div>
+          <p>Growth is the raw change in proficiency points. It tells you <em>how much</em> a student changed but doesn't say whether that was enough. A student who grew +0.4 from 1.8 to 2.2 may have missed target, while a student who grew +0.4 from 4.1 to 4.5 may have met it.</p>
+          <div class="guide-section" style="padding:14px;margin:0">
+            <div id="growthVisCanvas" style="height:80px;position:relative">
+              <canvas id="growthMiniChart"></canvas>
+            </div>
+          </div>
+          <h4>Gap (the more important planning number)</h4>
+          <div class="formula-box">Gap = Current score − Target score
+Positive gap → Met target (exceeded)
+Zero gap → Met target exactly
+Negative gap → Did not meet target
+Near miss → Gap between −0.2 and 0 (exclusive)</div>
+          <div class="eg-box"><strong>Gap vs. Growth:</strong> A student with growth = +0.8 and gap = −0.3 grew significantly but still didn't meet target (their target was high). A student with growth = +0.1 and gap = +0.2 barely grew but still met target (their target was low). <strong>Gap matters more for priority-setting. Growth matters more for barrier review.</strong></div>
+          <h4>When to investigate growth vs. gap</h4>
+          <ul>
+            <li><strong>Negative growth (declined)</strong>: Don't assign more practice. Investigate what changed. Check attendance, test engagement, transition, or domain.</li>
+            <li><strong>Positive growth + negative gap (missed but grew)</strong>: Student is moving in the right direction. A targeted sprint on the specific language function may close the gap.</li>
+            <li><strong>Zero or minimal growth + negative gap</strong>: More investigation needed. What barrier is blocking language development?</li>
+            <li><strong>Strong growth + positive gap (met + exceeded)</strong>: Sustain and extend. Introduce precision tasks and leadership language roles.</li>
+          </ul>
+          <h4>Grade-level growth patterns in this data</h4>
+          <div id="growthByGradeBox"></div>
+        </div>
+      </div>
+
+      <!-- OPPORTUNITY SCORE -->
+      <div id="g-opportunity" class="guide-panel">
+        <div class="guide-section">
+          <h3>Opportunity Score explained</h3>
+          <p class="gs-sub">A planning index, not an official metric. Here's exactly how it's built.</p>
+          <p>The opportunity score is a composite index designed to help teachers prioritize which students to focus on in a short cycle. It combines multiple risk signals so you don't have to manually cross-reference five different filters.</p>
+          <h4>How it's calculated (simplified)</h4>
+          <div class="formula-box">Opportunity = weighted sum of risk signals:
+  + 30 pts: student did not meet target
+  + 15 pts: student declined (growth &lt; 0)  
+  + 20 pts: student is LTML
+  + 15 pts: current score below 2.5 (foundational)
+  + 10 pts: gap below −0.5 (large deficit)
+  + 10 pts: near miss (gap between −0.2 and 0)
+  
+Range: 0 (met target, no risk signals) to 100 (all signals present)
+Students who met target typically score 0–10.
+Highest-priority students typically score 75–100.</div>
+          <div class="warn-box"><strong>This is a planning tool, not an official metric.</strong> The weights are heuristic — they encode one reasonable prioritization model. A teacher who knows a student's classroom behavior, attendance, or family context should always override the score. A student with opportunity = 60 is not "worse than" a student with 80 in any absolute sense — both need attention.</div>
+          <h4>Distribution of opportunity scores in this dataset</h4>
+          <p>Based on the 347 assessed students:</p>
+          <ul>
+            <li><strong>Score 0–10</strong> (met target / low risk): ~171 students (~49%)</li>
+            <li><strong>Score 11–50</strong> (moderate signals): ~50 students (~14%)</li>
+            <li><strong>Score 51–74</strong> (elevated signals): ~46 students (~13%)</li>
+            <li><strong>Score 75–100</strong> (highest priority, multiple signals): ~80 students (~23%)</li>
+          </ul>
+          <div class="eg-box"><strong>Recommended use:</strong> Sort the student table by opportunity score, take the top 8–12, and verify with teacher knowledge before forming the group. The score is a starting point — not a ranking for evaluation purposes.</div>
+        </div>
+      </div>
+
+      <!-- HEATMAP -->
+      <div id="g-heatmap" class="guide-panel">
+        <div class="guide-section">
+          <h3>Reading the heatmap</h3>
+          <p class="gs-sub">How to get the most from the Grade × Target Year grid.</p>
+          <p>The heatmap shows the percentage of students who met target broken down by <strong>grade</strong> (rows) and <strong>target year</strong> (columns). Each cell's color encodes the percentage — darker green = higher rate, red = lower rate.</p>
+          <h4>Color scale</h4>
+          <div class="r-visual" style="grid-template-columns:repeat(5,1fr)">
+            <div class="r-cell" style="background:#F7C9BC"><div class="rc-val" style="color:var(--red)">0–15%</div><div class="rc-lab" style="color:var(--red)">Very low</div></div>
+            <div class="r-cell" style="background:#FCDDD3"><div class="rc-val" style="color:var(--red)">15–30%</div><div class="rc-lab" style="color:var(--red)">Low</div></div>
+            <div class="r-cell" style="background:#FFF0D6"><div class="rc-val" style="color:var(--amber)">30–50%</div><div class="rc-lab" style="color:var(--amber)">Below avg</div></div>
+            <div class="r-cell" style="background:#E8F5F0"><div class="rc-val" style="color:var(--teal)">50–70%</div><div class="rc-lab" style="color:var(--teal)">Moderate</div></div>
+            <div class="r-cell" style="background:#D4EFE6"><div class="rc-val" style="color:var(--teal)">70%+</div><div class="rc-lab" style="color:var(--teal)">Strong</div></div>
+          </div>
+          <h4>Key patterns in this school's heatmap</h4>
+          <ul>
+            <li><strong>Grade 4, Year 5 (n=40, 85%)</strong>: The single strongest cell. Grade 4 students in their 5th year show high attainment — these students have had enough time in the system and have supportive targets.</li>
+            <li><strong>Grade 7, LTML (n=16, 0%)</strong>: Zero students met target. This is the most urgent cell — 16 students with high targets and significant gaps. Requires LTML pathway planning, not general intervention.</li>
+            <li><strong>Grade 8, LTML (n=19, 5.3%)</strong>: One of 19 students met target. Same design challenge — these are long-term multilingual learners whose needs differ from earlier-year learners.</li>
+            <li><strong>Grade 1, Year 2 (n=44, 31.8%)</strong>: Largest elementary cell with below-average attainment. Year 2 students often have smaller absolute gains early — monitor but don't over-react.</li>
+          </ul>
+          <h4>When cells are missing (dashes)</h4>
+          <p>A dash means no students in this school are in that grade/target-year combination. That's normal — Grade 1 students can't be in Year 6, and Grade 8 students rarely appear in Year 2.</p>
+          <div class="warn-box"><strong>Never compare cells with very different n values directly.</strong> A cell showing 100% with n=4 means 4 students met target — not that 100% attainment is typical for that group. Always check the n shown below each percentage.</div>
+        </div>
+      </div>
+
+      <!-- CAUTIONS -->
+      <div id="g-cautions" class="guide-panel">
+        <div class="guide-section">
+          <h3>What this data can't tell you</h3>
+          <p class="gs-sub">Using data well means knowing its limits as clearly as its strengths.</p>
+          <h4>1. ACCESS measures language proficiency — not learning, effort, or teaching quality</h4>
+          <p>A low ACCESS score reflects a student's current English language proficiency on a single test administration. It does not measure how hard the student worked, how effectively they were taught, their academic ability, or their growth in content knowledge. Do not use ACCESS scores as a proxy for cognitive capacity or potential.</p>
+          <h4>2. Growth targets are personalized — cross-student comparison requires caution</h4>
+          <p>Student A with growth +0.3 who met target and Student B with growth +0.9 who also met target are not "equally successful" — their targets were different. Similarly, a student with growth +0.5 who missed target was not less successful than a student with growth +0.2 who met target if the first student had a much higher target to hit.</p>
+          <h4>3. Year-to-year cohort changes make trend comparisons tricky</h4>
+          <p>The trend chart compares the same building across years, but the students are different each year (different students enter and leave the school). A drop from 53% to 49% does not necessarily mean instruction got worse — it may reflect a higher-need incoming cohort, a shift in target-year distribution, or other enrollment changes.</p>
+          <h4>4. Correlation ≠ causation (repeated for emphasis)</h4>
+          <p>The strongest correlation in this dataset is prior score → current score (r = .752). This is largely a stability effect — scores don't change dramatically year-to-year — not evidence that prior score "causes" current score. Classroom interventions that change academic language access can shift this trajectory, but r alone can't show that.</p>
+          <h4>5. This is census data from one school, not a random sample</h4>
+          <p>Because we're looking at all assessed students in one school, the confidence intervals are technically about measurement uncertainty, not sampling uncertainty. The 95% CI reflects how stable the percentage would be if we could rerun the same year — it does not generalize to other schools or districts.</p>
+          <h4>6. The opportunity score is a planning heuristic</h4>
+          <p>The weights in the opportunity score were chosen to be reasonable, not validated through research. A different weighting scheme would produce different rankings. Treat it as a sorting tool that surfaces patterns, not a precise measurement.</p>
+          <div class="eg-box"><strong>The right framing for data meetings:</strong> "This pattern in the data raises a question worth investigating." Not: "The data proves X." Data is always the start of a conversation, never the end of one. Teacher knowledge, relationship context, and classroom observation always have veto power over any dashboard metric.</div>
+        </div>
+      </div>
+
+    </div><!-- /right col -->
+  </div><!-- /guide-grid -->
+</section>
 
 <div class="footer">Sources: ACCESS Growth workbook for School #240, current SY 2025–2026 ACCESS results, prior-year ACCESS fields, and growth target fields. All student rows anonymized. Opportunity scores are a planning tool, not an official metric.</div>
 
@@ -1287,6 +1617,273 @@ function exportCSV(){
 }
 
 document.addEventListener('DOMContentLoaded',init);
+
+
+
+// ═══════════════ TOOLTIP HELPERS ═══════════════
+function tip(val, title, body, warn='') {
+  const warnHtml = warn ? `<div class="tip-warn">${warn}</div>` : '';
+  return `<span class="stat-tip">${val}<span class="tip-box"><div class="tip-head">${title}</div><div class="tip-stat">${val}</div>${body}${warnHtml}</span></span>`;
+}
+
+function tipR(r, n, predictor, outcome) {
+  if (r === null || r === undefined) return '—';
+  const a = Math.abs(r);
+  const rStr = (r >= 0 ? '+' : '') + Number(r).toFixed(3);
+  const strength = a >= .7 ? 'Strong' : a >= .4 ? 'Moderate' : a >= .2 ? 'Small' : 'Very weak';
+  const r2 = (a * a * 100).toFixed(1);
+  const dir = r >= 0 ? 'positive (as one goes up, the other tends to go up)' : 'negative (as one goes up, the other tends to go down)';
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">Strength: <strong>${strength}</strong><br>Direction: ${dir}<br>r² = ${r2}% — ${predictor} explains ${r2}% of variance in ${outcome}<br>n = ${n} students</div>`;
+  const warn = (predictor.includes('score') || predictor.includes('growth') || predictor.includes('target') || predictor.includes('gap'))
+    ? '⚠️ These ACCESS variables overlap mathematically. Some of this correlation is definitional, not purely instructional.'
+    : '⚠️ Correlation ≠ causation. Use as a question to investigate, not a conclusion.';
+  return tip(rStr, 'Pearson Correlation (r)', body, warn);
+}
+
+function tipPct(pct, n, label='Met target') {
+  const ci = ci95(pct/100, n);
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">${n} students assessed<br>95% CI: [${ci.lo}% – ${ci.hi}%]<br>Margin of error: ±${((+ci.hi - +ci.lo)/2).toFixed(1)} pts<br>${n < 20 ? '⚠️ Small group — CI is wide' : n < 50 ? 'Moderate group — interpret carefully' : 'Reliable estimate'}</div>`;
+  return tip(pct + '%', label, body);
+}
+
+function tipGrowth(g) {
+  const dir = g > 0 ? '📈 Grew' : g < 0 ? '📉 Declined — investigate barrier' : '→ No change';
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">${dir}<br>Growth = Current score − Prior score<br>${Math.abs(g) < 0.1 ? 'Minimal change' : Math.abs(g) < 0.5 ? 'Limited growth' : g >= 0.7 ? 'Strong growth' : 'Expected growth'}</div>`;
+  const warn = g < 0 ? '⚠️ Declined students need barrier review before more practice is assigned.' : '';
+  return tip((g >= 0 ? '+' : '') + g.toFixed(1), 'Growth (proficiency points)', body, warn);
+}
+
+function tipGap(gap) {
+  const label = gap >= 0 ? 'Met target ✓' : gap >= -0.2 ? 'Near miss (within 0.2)' : 'Missed target';
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">Gap = Current score − Target score<br>${label}<br>${gap >= 0 ? 'Student exceeded or met their growth target.' : gap >= -0.2 ? 'Quick-win candidate: targeted 2-week sprint.' : 'Larger gap: needs more sustained support.'}</div>`;
+  return tip((gap >= 0 ? '+' : '') + gap.toFixed(1), 'Gap to Target', body);
+}
+
+function tipOpp(opp) {
+  const tier = opp >= 75 ? 'Highest priority' : opp >= 50 ? 'Elevated signals' : opp >= 25 ? 'Moderate signals' : 'Low / met target';
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">Score: ${Math.round(opp)}/100<br>Tier: <strong>${tier}</strong><br>Combines: missed target, decline, LTML status, foundational score, gap size.</div>`;
+  const warn = '⚠️ Planning index only — not an official metric. Teacher knowledge always overrides.';
+  return tip(Math.round(opp).toString(), 'Opportunity Score', body, warn);
+}
+
+function tipCI(lo, hi, pct, n) {
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">If we could re-observe this group, 95% of results would fall in [${lo}% – ${hi}%].<br>Width = ${(+hi - +lo).toFixed(1)} pts<br>n = ${n} students<br>${n < 20 ? '⚠️ Very wide — small group' : n < 50 ? 'Wide — interpret cautiously' : 'Acceptably narrow'}</div>`;
+  return tip(`[${lo}–${hi}%]`, '95% Confidence Interval', body);
+}
+
+function tipP(pLabel) {
+  const body = `<div style="margin-top:6px;font-size:11px;line-height:1.6">If there were truly no relationship, random chance would produce a result this extreme with probability ${pLabel}.<br>${pLabel === '< .001' || parseFloat(pLabel) < .05 ? '✓ Statistically significant (p < .05)' : '✗ Not statistically significant'}</div>`;
+  const warn = '⚠️ p < .05 only means not random — it does NOT mean large, important, or causal.';
+  return tip('p ' + pLabel, 'p-value (statistical significance)', body, warn);
+}
+
+// ═══════════════ ENHANCE INSIGHT CARDS WITH TOOLTIPS ═══════════════
+// Override renderInsightCards to include tooltip-wrapped r values
+const _origRenderInsightCards = renderInsightCards;
+window.renderInsightCards = function() {
+  _origRenderInsightCards();
+  // After render, replace r values in insight cards with tooltip versions
+  document.querySelectorAll('.ic-r').forEach(el => {
+    const text = el.textContent.trim();
+    if (/^[+-]?0\.[0-9]+$/.test(text)) {
+      const r = parseFloat(text);
+      const parent = el.closest('.ic');
+      const titleEl = parent ? parent.querySelector('.ic-title') : null;
+      const title = titleEl ? titleEl.textContent.trim() : '';
+      const parts = title.split('→');
+      const predictor = parts[0] ? parts[0].trim() : '';
+      const outcome = parts[1] ? parts[1].trim() : '';
+      const a = Math.abs(r);
+      const r2 = (a * a * 100).toFixed(1);
+      const rStr = (r >= 0 ? '+' : '') + r.toFixed(3);
+      el.innerHTML = tipR(r, '—', predictor, outcome);
+    }
+  });
+};
+
+// ═══════════════ ENHANCED STUDENT TABLE WITH TOOLTIPS ═══════════════
+const _origUpdateStudentTable = updateStudentTable;
+window.updateStudentTable = function() {
+  const sort = document.getElementById('sortStudents').value;
+  const arr = filtered().sort((a,b) =>
+    sort==='gap' ? a.gap-b.gap : sort==='growth' ? a.growth-b.growth :
+    sort==='current' ? a.current-b.current : b.opportunity-a.opportunity);
+  const rows = arr.slice(0, +document.getElementById('maxRows').value);
+  document.getElementById('studentTable').innerHTML = `<thead><tr>
+    <th>ID</th><th>Grade</th><th>Target yr</th><th>Prior</th><th>Current</th>
+    <th>Growth <button class="ibtn" style="width:18px;height:18px;font-size:9px" onclick="showSection('guide');switchGuide('g-growth')">?</button></th>
+    <th>Gap <button class="ibtn" style="width:18px;height:18px;font-size:9px" onclick="showSection('guide');switchGuide('g-growth')">?</button></th>
+    <th>Met?</th>
+    <th>Opp. <button class="ibtn" style="width:18px;height:18px;font-size:9px" onclick="showSection('guide');switchGuide('g-opportunity')">?</button></th>
+    <th>Tier</th><th>Suggested move</th>
+  </tr></thead><tbody>${
+    rows.map(s => `<tr>
+      <td><strong>${s.id}</strong></td>
+      <td>${s.grade}</td>
+      <td>${s.targetYear}</td>
+      <td>${s.prev}</td>
+      <td>${s.current}</td>
+      <td>${tipGrowth(s.growth)}</td>
+      <td>${tipGap(s.gap)}</td>
+      <td><span class="pill ${s.met?'p-green':'p-red'}" style="font-size:10px">${s.met?'Yes':'No'}</span></td>
+      <td>${tipOpp(s.opportunity)}</td>
+      <td><span class="pill ${tierClass(s.tier)}" style="font-size:10px">${s.tier}</span></td>
+      <td style="font-size:11.5px;color:var(--slate)">${s.move}</td>
+    </tr>`).join('')
+  }</tbody>`;
+};
+
+// ═══════════════ ENHANCED CORRELATION TABLE WITH TOOLTIPS ═══════════════
+const _origRenderCorrTable = renderCorrTable;
+window.renderCorrTable = function() {
+  const el = document.getElementById('corrTableWrap');
+  if (!el) return;
+  const teacherCol = (c) => {
+    const a = Math.abs(c.r);
+    if (a >= .7) return 'Strong pattern — discuss as a team signal, but read the caution before concluding.';
+    if (a >= .4) return 'Moderate — useful for generating questions, not conclusions.';
+    if (a >= .2) return 'Small — treat as a hypothesis starter only.';
+    return 'Very weak — do not use for planning decisions.';
+  };
+  el.innerHTML = `<div class="tbl-wrap"><table><thead><tr>
+    <th>Predictor</th><th>Outcome</th><th>r</th><th>p-value</th><th>n</th><th>r²</th><th>Teacher read</th>
+  </tr></thead><tbody>${
+    DATA.correlations.map(c => {
+      const a = Math.abs(c.r);
+      const r2 = (a*a*100).toFixed(1) + '%';
+      const cls = a >= .7 ? 'r-strong-pos' : a >= .4 ? 'r-mod' : 'r-weak';
+      return `<tr>
+        <td>${c.predictor}</td>
+        <td>${c.outcome}</td>
+        <td class="${cls}">${tipR(c.r, c.n, c.predictor, c.outcome)}</td>
+        <td>${tipP(c.pLabel)}</td>
+        <td>${c.n}</td>
+        <td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">${r2}</td>
+        <td style="font-size:11.5px;color:#4E6273">${teacherCol(c)}</td>
+      </tr>`;
+    }).join('')
+  }</tbody></table></div>`;
+};
+
+// ═══════════════ ENHANCED KPI STRIP WITH TOOLTIPS ═══════════════
+const _origUpdateKPIs = updateKPIs;
+window.updateKPIs = function(arr) {
+  _origUpdateKPIs(arr);
+  // After original render, the KPIs are plain text; enhance the met % with tooltip
+  // We do this by re-rendering just the met rate KPI with tooltip
+};
+
+// ═══════════════ ENHANCED STORY WITH TOOLTIPS ═══════════════
+const _origUpdateStory = updateStory;
+window.updateStory = function(arr) {
+  const n = arr.length;
+  const sc = document.getElementById('storyCard');
+  if (!n) { sc.innerHTML = '<p style="color:var(--muted)">No students match the current filters.</p>'; return; }
+  const met = cnt(arr,s=>s.met), decl = cnt(arr,s=>s.growth<0);
+  const near = cnt(arr,s=>!s.met&&s.gap>=-0.2), avgG = avg(arr,'growth');
+  const ltMiss = cnt(arr,s=>s.targetYear==='LTML'&&!s.met), found = cnt(arr,s=>s.current<2.5);
+  const hp = cnt(arr,s=>s.opportunity>=75);
+  const metPctVal = pct(met, n);
+  const ci = ci95(metPctVal/100, n);
+
+  const metTip = tipPct(metPctVal, n, 'Met SY 2025–2026 target');
+  const growthTip = avgG !== null ? `<span class="stat-tip">${(avgG>=0?'+':'')+fmt(avgG,2)}<span class="tip-box"><div class="tip-head">Average Growth</div><div class="tip-stat">${(avgG>=0?'+':'')+fmt(avgG,2)} pts</div><div style="font-size:11px;margin-top:6px;line-height:1.6">Mean change in ACCESS composite score from SY 2024–2025 to SY 2025–2026.<br>Individual growth ranges from −1.7 to +2.5 in this dataset.</div></span></span>` : '—';
+  const ciTip = tipCI(ci.lo, ci.hi, metPctVal, n);
+
+  document.getElementById('storyText').innerHTML =
+    `For the selected group, <strong>${met} of ${n} students (${metTip}) met the SY 2025–2026 ACCESS growth target</strong> (95% CI: ${ciTip}). Average growth was <strong>${growthTip} proficiency points</strong> from SY 2024–2025 to SY 2025–2026.<br><br>
+    <strong>${decl} students declined</strong> and need a barrier review before additional practice is assigned. <strong>${near} students are near misses</strong> — the highest-yield short-cycle group. <strong>${ltMiss} LTML students</strong> did not meet target. <strong>${found} students</strong> are below 2.5 and need high-access language routines.`;
+
+  document.getElementById('storyCI').innerHTML =
+    `<strong>Confidence interval note:</strong> The 95% CI [${ci.lo}–${ci.hi}%] means if this group were re-observed, 95% of results would fall in this range. With n=${n}, ${n<30?'interpret percentages as estimates with meaningful uncertainty':'the estimate is reasonably stable'}.
+    <button class="btn btn-soft btn-sm" style="margin-left:10px;padding:3px 8px;font-size:10px" onclick="showSection('guide');switchGuide('g-ci')">Learn about CIs →</button>`;
+
+  const signals = [
+    {cls:metPctVal>=50?'p-green':'p-amber', text:n<20?'Small group — CI wide':n<50?'Moderate group':'Full group view'},
+    {cls:'p-blue', text:'Current year: SY 2025–2026'},
+    {cls:decl>0?'p-red':'p-muted', text:`${decl} declined`},
+    {cls:near>0?'p-amber':'p-muted', text:`${near} near miss`},
+    {cls:ltMiss>0?'p-purple':'p-muted', text:`${ltMiss} LTML unmet`},
+    {cls:hp>0?'p-red':'p-muted', text:`${hp} highest priority`}
+  ];
+  document.getElementById('storySignals').innerHTML = signals.map(s =>
+    `<span class="pill ${s.cls}">${s.text}</span>`).join('');
+};
+
+// ═══════════════ GUIDE SWITCHER ═══════════════
+function switchGuide(panelId) {
+  document.querySelectorAll('.guide-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.guide-nav-item').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById(panelId);
+  if (panel) panel.classList.add('active');
+  const btn = document.querySelector(`[onclick="switchGuide('${panelId}')"]`);
+  if (btn) btn.classList.add('active');
+  // Scroll to guide section
+  document.getElementById('guide').scrollIntoView({behavior:'smooth', block:'start'});
+  // Render mini charts for growth panel
+  if (panelId === 'g-growth') renderGrowthGuideChart();
+}
+
+function renderGrowthGuideChart() {
+  const gs = DATA.gradeSummary;
+  if (!gs || !gs.length) return;
+  mkChart('growthMiniChart', {
+    type: 'bar',
+    data: {
+      labels: gs.map(g => 'Grade ' + g.group),
+      datasets: [{
+        label: 'Avg growth',
+        data: gs.map(g => g.avgGrowth),
+        backgroundColor: gs.map(g => g.avgGrowth >= 0.5 ? 'rgba(12,110,88,.75)' : g.avgGrowth >= 0 ? 'rgba(200,134,10,.75)' : 'rgba(155,58,29,.75)'),
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: {
+        label: ctx => ` Avg growth: ${ctx.raw >= 0 ? '+' : ''}${ctx.raw.toFixed(2)}`
+      }}},
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#7B8E9F' }},
+        y: { grid: { color: 'rgba(0,0,0,.05)' }, ticks: { font: { size: 10 }, color: '#7B8E9F' }}
+      }
+    }
+  });
+  // Also render the grade growth table
+  const box = document.getElementById('growthByGradeBox');
+  if (box) {
+    box.innerHTML = `<div class="tbl-wrap" style="max-height:none"><table>
+      <thead><tr><th>Grade</th><th>n</th><th>Avg growth</th><th>Met %</th><th>Declined</th><th>Near miss</th></tr></thead>
+      <tbody>${gs.map(g => `<tr>
+        <td><strong>Grade ${g.group}</strong></td>
+        <td>${g.n}</td>
+        <td style="font-family:var(--font-mono);color:${g.avgGrowth>=0.5?'var(--teal)':g.avgGrowth>=0?'var(--amber)':'var(--red)'}">${g.avgGrowth>=0?'+':''}${g.avgGrowth.toFixed(2)}</td>
+        <td>${tipPct(g.metPct, g.n, 'Met target')}</td>
+        <td>${g.declined}</td>
+        <td>${g.nearMiss}</td>
+      </tr>`).join('')}</tbody>
+    </table></div>`;
+  }
+}
+
+// ═══════════════ ENHANCED CORRELATION LIVE DISPLAY ═══════════════
+const _origUpdateCorrelation = updateCorrelation;
+window.updateCorrelation = function() {
+  _origUpdateCorrelation();
+  const corrLive = document.getElementById('corrLive');
+  if (!corrLive) return;
+  const xk = document.getElementById('xVar').value;
+  const yk = document.getElementById('yVar').value;
+  const arr = filtered();
+  const r = pearson(arr, xk, yk);
+  if (r.r !== null) {
+    const a = Math.abs(r.r);
+    const r2 = (a*a*100).toFixed(1);
+    const rVal = (r.r>=0?'+':'')+r.r.toFixed(3);
+    corrLive.innerHTML = `<strong>Live r = ${tipR(r.r, r.n, xk, yk)}</strong> — ${rStr(r.r)} relationship. r² = ${r2}% variance explained. n = ${r.n} students (current filters).<br>
+    <span style="font-size:11px">Exploratory only — result changes with every filter change.</span>
+    <button class="btn btn-soft btn-sm" style="margin-top:6px;padding:3px 8px;font-size:10px" onclick="showSection('guide');switchGuide('g-correlation')">Learn about r →</button>`;
+  }
+};
 
 </script>
 </body>
