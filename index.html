@@ -125,19 +125,191 @@ tbody tr:hover td{background:var(--lineSoft)}
 .r-scale{display:flex;gap:4px;align-items:flex-end;height:80px;margin:12px 0}.r-bar{flex:1;border-radius:6px 6px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-size:10px;font-weight:700;color:#fff;min-width:0}.r-labels{display:flex;gap:4px;margin-top:4px}.r-label{flex:1;text-align:center;font-size:9.5px;color:var(--muted);min-width:0}.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.do-card,.dont-card{border-radius:12px;padding:13px}.do-card{background:var(--greenSoft);border:1px solid rgba(12,110,88,.2)}.dont-card{background:var(--redSoft);border:1px solid rgba(155,58,29,.2)}.do-card h5,.dont-card h5{font-size:12.5px;font-weight:700;margin-bottom:6px}.do-card h5{color:var(--green)}.dont-card h5{color:var(--red)}.do-card li,.dont-card li{font-size:12px;line-height:1.55}.do-card ul,.dont-card ul{margin-left:14px}
 .ci-bar-row{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:12px}.ci-bar-row .ci-label{width:145px;color:var(--slate);font-weight:600;flex-shrink:0;font-size:11.5px}.ci-track{flex:1;background:var(--lineSoft);border-radius:6px;height:20px;position:relative;overflow:visible}.ci-fill{position:absolute;top:0;height:100%;border-radius:6px}.ci-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;border:2px solid #fff}.ci-pct{margin-left:6px;font-size:11px;color:var(--muted);font-family:var(--font-m)}
 .sleg{display:flex;gap:12px;font-size:11.5px;font-weight:600;margin-top:7px}.sleg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:3px}.toast{position:fixed;bottom:22px;right:22px;background:var(--navy);color:#fff;padding:10px 15px;border-radius:var(--r-pill);font-size:13px;font-weight:600;z-index:101;box-shadow:var(--shadow-md);display:none}.footer{margin-top:18px;text-align:center;font-size:11px;color:var(--muted);padding:14px}
+
+/* Premium polish + accessibility layer */
+:focus-visible{outline:3px solid rgba(42,92,171,.42);outline-offset:3px;border-radius:8px}
+.card,.kpi,.story-card,.controls-card,.gc,.acard{transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+.card:hover,.kpi:hover,.story-card:hover,.gc:hover,.acard:hover{box-shadow:var(--shadow-md);border-color:#C9D9E5}
+.publisher-strip{display:grid;grid-template-columns:1.1fr 1.5fr;gap:12px;margin:0 0 12px;align-items:stretch}
+.pub-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);padding:14px 16px}
+.pub-title{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.pub-main{font-size:14px;font-weight:700;color:var(--navy);line-height:1.35}
+.pub-sub{font-size:12px;color:var(--slate);line-height:1.55;margin-top:4px}
+.pub-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;height:100%}
+.pub-step{background:linear-gradient(135deg,#FFFFFF,#F7FAFC);border:1px solid var(--line);border-radius:14px;padding:12px 12px;display:flex;gap:9px;align-items:flex-start;min-height:78px}
+.pub-num{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pub-step h4{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:2px}
+.pub-step p{font-size:11px;color:var(--muted);line-height:1.35}
+.view-options{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid var(--lineSoft);flex-wrap:wrap}
+.view-label{font-size:10px;font-weight:800;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:6px}
+.view-label::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.view-buttons{display:flex;gap:6px;flex-wrap:wrap}
+.view-chip{border:1px solid var(--line);background:var(--surfaceAlt);color:var(--slate);border-radius:999px;padding:6px 10px;font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:5px;transition:all .15s ease}
+.view-chip:hover{background:var(--lineSoft);color:var(--navy)}
+.view-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.reader-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+.reader-card{background:linear-gradient(135deg,#FFFFFF,#F7FBFC);border:1px solid var(--line);border-radius:15px;padding:13px 14px;display:flex;gap:10px;align-items:flex-start;box-shadow:var(--shadow-sm)}
+.reader-icon{width:30px;height:30px;border-radius:10px;background:var(--tealSoft);display:flex;align-items:center;justify-content:center;color:var(--teal);font-weight:900;flex-shrink:0}
+.reader-card h4{font-size:12.5px;font-weight:800;margin-bottom:3px;color:var(--navy)}
+.reader-card p{font-size:11.5px;color:var(--slate);line-height:1.45}
+.corr-mini-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0 12px}
+.corr-mini{border:1px solid var(--line);background:var(--surfaceAlt);border-radius:12px;padding:9px 10px;min-height:70px}
+.corr-mini strong{display:block;font-size:11.5px;color:var(--navy);margin-bottom:3px}
+.corr-mini span{display:block;font-size:10.8px;color:var(--slate);line-height:1.35}
+.corr-readout{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+.readout-pill{border-radius:12px;border:1px solid rgba(42,92,171,.16);background:var(--blueSoft);padding:9px 11px;font-size:11.5px;line-height:1.5;color:var(--navy)}
+.readout-pill strong{color:var(--blue)}
+.trend-key{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:7px;font-size:11px;color:var(--muted)}
+.trend-line-sample{width:28px;height:0;border-top:2px solid rgba(23,40,58,.55);display:inline-block}
+.stat-explain{border-radius:4px;padding:0 1px}.stat-explain:focus{box-shadow:0 0 0 3px rgba(42,92,171,.18);outline:none}.stat-explain:focus .se-popup,.stat-explain:focus-within .se-popup{visibility:visible;opacity:1}.stat-explain .se-popup{max-width:min(310px,92vw)}
+.tip-table{overflow:visible;max-height:none}.tip-table table{table-layout:auto}.tip-table th{position:static}
+body.mode-large{font-size:15.5px}body.mode-large .hero p,body.mode-large .sec-hdr p,body.mode-large .story-lede{font-size:15px}body.mode-large .ct{font-size:14.5px}body.mode-large .cs,body.mode-large .chart-cap,body.mode-large td{font-size:12.8px}body.mode-large .ctrl-label{font-size:11px}body.mode-large .tab{font-size:13.5px;padding:8px 15px}
+body.mode-contrast{--bg:#FFFFFF;--surface:#FFFFFF;--surfaceAlt:#F7F9FB;--line:#AEBFCC;--lineSoft:#E7EEF4;--muted:#42576A;--slate:#263C50;--teal:#005F49;--blue:#184A90;--red:#7F2D17;--amber:#865A00;--green:#0A613C;--shadow-sm:0 2px 8px rgba(0,0,0,.10);--shadow-md:0 8px 24px rgba(0,0,0,.15)}
+body.mode-contrast .hero{background:#102235}body.mode-contrast .card,body.mode-contrast .kpi,body.mode-contrast .controls-card{border-width:1.5px}body.mode-contrast .stat-explain{border-bottom-color:#003A8C}
+body.mode-reduced *{transition:none!important;animation:none!important;scroll-behavior:auto!important}body.mode-reduced .btn:hover,body.mode-reduced .card:hover,body.mode-reduced .kpi:hover{transform:none!important}
+@media(max-width:1100px){.publisher-strip,.reader-strip{grid-template-columns:1fr}.pub-steps{grid-template-columns:1fr 1fr}.corr-mini-guide{grid-template-columns:1fr}}
+@media(max-width:700px){.pub-steps,.reader-strip{grid-template-columns:1fr}.view-options{align-items:flex-start}.view-buttons{width:100%}.view-chip{flex:1;justify-content:center}.publisher-strip{margin-top:4px}}
+
 @media print{.controls-wrap,.tabs,.hero-actions,.btn,.ibtn,.toast{display:none!important}.section{display:block!important;page-break-inside:avoid}body{background:#fff}.card{box-shadow:none}.plan-out{background:#fff;color:#111;border:1px solid #C8D6DF}}
 @media(max-width:1100px){.hero-inner,.g2,.g3,.g-sb,.g-plan,.guide-layout{grid-template-columns:1fr}.controls-grid{grid-template-columns:1fr 1fr}.kpi-strip,.tkwy-row,.wf-grid,.scards{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.shell{padding:12px}.hero{padding:22px 18px}.hero h1{font-size:24px}.kpi-strip,.tkwy-row,.wf-grid,.scards,.do-dont{grid-template-columns:1fr}.controls-grid,.g-tool{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr 1fr}.guide-layout{grid-template-columns:1fr}}
+
+
+/* Friendly publisher layer — calmer, warmer, more visually accessible */
+.theme-friendly{
+  --navy:#173044;--navy2:#244961;
+  --teal:#0E7667;--teal2:#14977F;--tealSoft:#E7F6F1;
+  --slate:#40586C;--muted:#65798A;
+  --line:#D8E4E9;--lineSoft:#EDF4F1;
+  --bg:#F8F3EA;--surface:#FFFDF8;--surfaceAlt:#FAF7F0;
+  --amber:#B97912;--amberSoft:#FFF1CF;
+  --red:#9A4A32;--redSoft:#F9ECE6;
+  --green:#227653;--greenSoft:#E6F4EC;
+  --purple:#6D5AA6;--purpleSoft:#F1EEF9;
+  --blue:#315F8E;--blueSoft:#EAF2F8;
+  --shadow-sm:0 4px 16px rgba(39,64,82,.08);
+  --shadow-md:0 12px 34px rgba(39,64,82,.12);
+  --shadow-lg:0 24px 68px rgba(39,64,82,.16);
+}
+body.theme-friendly{
+  background:
+    radial-gradient(circle at 8% 2%, rgba(234,192,127,.20), transparent 28%),
+    radial-gradient(circle at 92% 6%, rgba(14,118,103,.14), transparent 30%),
+    linear-gradient(180deg,#FAF6EF 0%,#F3EFE6 52%,#F7F4EC 100%);
+  color:var(--navy);
+  font-size:15px;
+}
+.theme-friendly .shell{max-width:1500px;padding:22px 26px 30px}
+.theme-friendly .hero{
+  background:linear-gradient(135deg,#173044 0%,#24536B 46%,#0E7667 100%);
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:32px;
+  padding:38px 42px 30px;
+  box-shadow:0 24px 70px rgba(23,48,68,.22);
+}
+.theme-friendly .hero::before{right:-120px;top:-110px;width:430px;height:430px;background:radial-gradient(circle,rgba(255,227,168,.22),transparent 66%)}
+.theme-friendly .hero::after{content:'';position:absolute;left:-70px;bottom:-95px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(231,246,241,.14),transparent 68%);pointer-events:none}
+.theme-friendly .eyebrow{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28);padding:7px 13px;font-size:11.5px}
+.theme-friendly .hero h1{font-size:38px;line-height:1.04;margin-bottom:12px}
+.theme-friendly .hero h1 span{color:#CFF3E4}
+.theme-friendly .hero p{font-size:15.5px;color:rgba(255,255,255,.86);max-width:780px;line-height:1.65}
+.theme-friendly .hero-card,.theme-friendly .hs{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.24);backdrop-filter:blur(8px)}
+.theme-friendly .hs-val{font-size:28px}.theme-friendly .hs-lab{font-size:11.5px;color:rgba(255,255,255,.78)}
+.theme-friendly .btn{border-radius:999px;padding:9px 15px;font-size:13px}
+.theme-friendly .btn-white{box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.theme-friendly .publisher-strip{grid-template-columns:.92fr 1.4fr;gap:14px;margin:0 0 14px}
+.theme-friendly .pub-card,.theme-friendly .pub-step,.theme-friendly .controls-card,.theme-friendly .card,.theme-friendly .kpi,.theme-friendly .story-card,.theme-friendly .gc,.theme-friendly .acard{
+  background:rgba(255,253,248,.92);
+  border:1px solid rgba(190,208,213,.82);
+  border-radius:24px;
+  box-shadow:var(--shadow-sm);
+}
+.theme-friendly .pub-card{padding:18px 20px;background:linear-gradient(135deg,#FFFDF8,#F4FBF6)}
+.theme-friendly .pub-title{color:var(--teal);font-size:11.5px;margin-bottom:8px}
+.theme-friendly .pub-main{font-size:17px;line-height:1.42}
+.theme-friendly .pub-sub{font-size:13.5px;color:var(--slate)}
+.theme-friendly .pub-step{background:linear-gradient(135deg,#FFFFFF,#FAF7F0);padding:14px;min-height:92px;align-items:flex-start}
+.theme-friendly .pub-num{background:linear-gradient(135deg,var(--teal),#5E947A);box-shadow:0 5px 14px rgba(14,118,103,.18)}
+.theme-friendly .pub-step h4{font-size:13.2px}.theme-friendly .pub-step p{font-size:12.2px;color:var(--slate);line-height:1.45}
+.theme-friendly .controls-wrap{background:rgba(248,243,234,.90);padding:9px 0;backdrop-filter:blur(18px)}
+.theme-friendly .controls-card{padding:16px 18px;border-radius:24px}
+.theme-friendly select,.theme-friendly input[type=text]{background:#FFFDF8;border-color:#CADDE2;border-radius:14px;padding:10px 12px;font-size:13.5px}
+.theme-friendly .ctrl-label{font-size:10.5px;color:#40586C;margin-bottom:6px}
+.theme-friendly .filter-status,.theme-friendly .filter-caution{font-size:12.3px}
+.theme-friendly .view-options{background:linear-gradient(135deg,#F4FBF6,#FFF9E9);border:1px solid var(--line);border-radius:18px;padding:12px 14px;margin-top:12px}
+.theme-friendly .view-chip{border-radius:999px;padding:7px 11px;background:#FFFFFF;color:var(--slate)}
+.theme-friendly .view-chip.active{background:var(--teal);border-color:var(--teal)}
+.theme-friendly .tabs{background:rgba(255,253,248,.88);border-radius:24px;padding:6px;box-shadow:var(--shadow-sm);border-color:#D8E4E9;margin:14px 0 14px;width:100%;justify-content:space-between}
+.theme-friendly .tab{flex:1;justify-content:center;border-radius:18px;padding:10px 11px;font-size:13px;color:var(--slate)}
+.theme-friendly .tab.active{background:linear-gradient(135deg,var(--navy),#2B536D);box-shadow:0 8px 20px rgba(23,48,68,.18)}
+.theme-friendly .tab-n{width:23px;height:23px;background:#F1EFE8;color:var(--slate)}
+.theme-friendly .section{animation:softIn .18s ease both}
+@keyframes softIn{from{opacity:.75;transform:translateY(4px)}to{opacity:1;transform:none}}
+.theme-friendly.mode-reduced .section{animation:none!important}
+.theme-friendly .sec-hdr{
+  background:linear-gradient(135deg,rgba(255,253,248,.94),rgba(244,251,246,.92));
+  border:1px solid rgba(216,228,233,.95);
+  border-radius:24px;
+  padding:18px 22px;
+  box-shadow:var(--shadow-sm);
+  margin-bottom:16px;
+  position:relative;
+  overflow:hidden;
+}
+.theme-friendly .sec-hdr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(180deg,var(--teal),#E2A344)}
+.theme-friendly .sec-hdr h2{font-size:26px;line-height:1.1;margin-bottom:6px}.theme-friendly .sec-hdr p{font-size:14px;color:var(--slate);line-height:1.55}
+.theme-friendly .friendly-use-strip{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:12px;margin:0 0 16px}
+.theme-friendly .friendly-use-card{display:flex;gap:12px;align-items:flex-start;background:rgba(255,253,248,.92);border:1px solid var(--line);border-radius:22px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.theme-friendly .friendly-use-card.primary{background:linear-gradient(135deg,#FFFDF8,#EAF8F2)}
+.theme-friendly .fu-icon{width:30px;height:30px;border-radius:12px;background:var(--teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;box-shadow:0 6px 18px rgba(14,118,103,.18)}
+.theme-friendly .friendly-use-card strong{font-size:13.5px;color:var(--navy)}
+.theme-friendly .friendly-use-card span:not(.fu-icon){font-size:12.5px;color:var(--slate);line-height:1.45}
+.theme-friendly .card,.theme-friendly .story-card{padding:20px}
+.theme-friendly .ch{align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--lineSoft)}
+.theme-friendly .ct{font-size:15px;letter-spacing:-.01em}.theme-friendly .cs{font-size:12.3px;color:var(--muted)}
+.theme-friendly .kpi{padding:18px;border-radius:22px;position:relative;overflow:hidden}
+.theme-friendly .kpi::after{content:'';position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--teal),#E2A344)}
+.theme-friendly .kpi-val{font-size:31px}.theme-friendly .kpi-lab{font-size:11px}.theme-friendly .kpi-note{font-size:12px}
+.theme-friendly .story-card{background:linear-gradient(135deg,#FFFDF8,#F0FAF4);border-radius:26px}
+.theme-friendly .story-lede{font-size:16px;line-height:1.75}.theme-friendly .story-ci{background:rgba(255,255,255,.68);border-radius:16px;font-size:12.3px;padding:12px 14px}
+.theme-friendly .cw{background:linear-gradient(135deg,#FFFFFF,#FBF8F0);border:1px solid var(--line);border-radius:22px;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.theme-friendly .cw canvas{background:rgba(255,255,255,.70);border-radius:16px}
+.theme-friendly .chart-cap{background:#F7F1E6;border:1px solid #E7D9C6;border-radius:14px;padding:10px 12px;font-size:12.2px;color:var(--slate);font-style:normal;margin-top:10px;line-height:1.55}
+.theme-friendly .callout{border-radius:18px;padding:14px 16px;font-size:13.2px;line-height:1.65;border-left-width:6px}
+.theme-friendly .co-blue{background:#EDF5FA}.theme-friendly .co-amber{background:#FFF5DC}.theme-friendly .co-teal{background:#EAF8F2}.theme-friendly .co-red{background:#FBEDE8}
+.theme-friendly .reader-strip{grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.theme-friendly .reader-card{border-radius:22px;padding:16px;background:linear-gradient(135deg,#FFFDF8,#F4FBF6)}
+.theme-friendly .reader-icon{width:38px;height:38px;border-radius:16px;background:linear-gradient(135deg,var(--tealSoft),#FFF1CF);color:var(--teal);font-size:16px}
+.theme-friendly .reader-card h4{font-size:13.7px}.theme-friendly .reader-card p{font-size:12.6px;color:var(--slate);line-height:1.5}
+.theme-friendly .corr-mini-guide{gap:9px;margin:12px 0 14px}
+.theme-friendly .corr-mini{background:#FFFDF8;border-color:#D8E4E9;border-radius:18px;padding:12px;min-height:88px}
+.theme-friendly .corr-mini strong{font-size:12.5px}.theme-friendly .corr-mini span{font-size:11.7px;color:var(--slate);line-height:1.45}
+.theme-friendly .stat-explain{border-bottom:2px dotted var(--teal);border-radius:7px;padding:1px 3px;background:rgba(14,118,103,.05)}
+.theme-friendly .stat-explain .se-popup{background:#FFFDF8;color:var(--navy);border:1px solid #C9D8DC;box-shadow:0 18px 48px rgba(23,48,68,.24);border-radius:18px;padding:15px 16px;width:315px}
+.theme-friendly .stat-explain .se-popup::after{border-top-color:#FFFDF8}
+.theme-friendly .se-head{color:var(--teal);font-size:13.5px}.theme-friendly .se-val{color:var(--amber);font-size:17px}.theme-friendly .se-body{color:var(--slate);font-size:12.2px}.theme-friendly .se-body strong{color:var(--navy)}
+.theme-friendly .tbl-wrap{border-radius:18px;border-color:var(--line);background:#FFFDF8}
+.theme-friendly th{background:#F2F0E8;color:var(--slate);font-size:10.5px;padding:10px 11px}.theme-friendly td{font-size:12.7px;padding:10px 11px}
+.theme-friendly .scard,.theme-friendly .tkwy,.theme-friendly .wf-step,.theme-friendly .proto-row,.theme-friendly .smove,.theme-friendly .corr-mini,.theme-friendly .reader-card{transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease}
+.theme-friendly .scard:hover,.theme-friendly .tkwy:hover,.theme-friendly .wf-step:hover,.theme-friendly .proto-row:hover,.theme-friendly .smove:hover,.theme-friendly .corr-mini:hover,.theme-friendly .reader-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:#BFD1D8}
+.theme-friendly .wf-step.active{background:linear-gradient(135deg,var(--navy),#2D5D73);border-color:transparent}.theme-friendly .wf-out{background:#EAF8F2;color:#0E665A;border-radius:18px;padding:14px 16px}
+.theme-friendly .scen-res{background:linear-gradient(135deg,#EAF8F2,#FFF4D6);border-radius:24px}.theme-friendly .scen-big{font-size:54px}.theme-friendly .plan-out{border-radius:20px;background:#173044;color:#EAF8F2;font-size:12.7px;line-height:1.72}
+.theme-friendly .guide-nav{border-radius:22px;background:#FFFDF8}.theme-friendly .gn-item{border-radius:15px;padding:11px 12px;font-size:13px}.theme-friendly .gn-item.active{background:linear-gradient(135deg,var(--navy),#2B536D)}
+.theme-friendly .gc{padding:24px}.theme-friendly .gc h3{font-size:23px}.theme-friendly .gc p,.theme-friendly .gc li{font-size:14px;line-height:1.72}
+@media(max-width:1100px){.theme-friendly .friendly-use-strip,.theme-friendly .publisher-strip,.theme-friendly .reader-strip{grid-template-columns:1fr}.theme-friendly .tabs{width:100%;justify-content:flex-start}.theme-friendly .tab{flex:0 1 auto}.theme-friendly .pub-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.theme-friendly .shell{padding:14px}.theme-friendly .hero{padding:26px 20px}.theme-friendly .hero h1{font-size:30px}.theme-friendly .pub-steps{grid-template-columns:1fr}.theme-friendly .tabs{border-radius:20px}.theme-friendly .tab{flex:1 1 44%;font-size:12.5px}.theme-friendly .friendly-use-card{padding:13px}.theme-friendly .controls-card{padding:14px}.theme-friendly .sec-hdr{padding:16px 18px}.theme-friendly .stat-explain .se-popup{width:min(305px,88vw)}}
+@media print{.theme-friendly{background:#fff!important}.theme-friendly .friendly-use-strip,.theme-friendly .publisher-strip{display:none!important}.theme-friendly .card,.theme-friendly .kpi,.theme-friendly .story-card{box-shadow:none!important;background:#fff!important}}
+
 </style>
 </head>
-<body>
+<body class="theme-friendly">
 <div class="shell">
   <div class="hero">
     <div class="hero-inner">
       <div>
         <div class="eyebrow">SY 2025–2026 Results · School #240</div>
-        <h1>ACCESS Growth<br><span>Teacher Action Dashboard</span></h1>
-        <p>Graceland Park / O'Donnell Heights — 347 assessed students. Move from <strong style="color:#fff">understanding data</strong> to <strong style="color:#fff">finding students</strong>, <strong style="color:#fff">choosing supports</strong>, and <strong style="color:#fff">building a plan you can use Monday</strong>.</p>
+        <h1>ACCESS Growth<br><span>Teacher Planning Studio</span></h1>
+        <p>A calmer, guided way to read ACCESS results, notice student groups, and choose one practical support cycle. Built for teacher teams — no statistics background needed.</p>
         <div class="hero-actions">
           <button class="btn btn-white" onclick="showSection('understand')">▶ Start here</button>
           <button class="btn btn-ghost" onclick="showSection('find')">Find students</button>
@@ -160,6 +332,22 @@ tbody tr:hover td{background:var(--lineSoft)}
           <div style="font-size:11px;opacity:.65">Hover underlined statistics for teacher-friendly explanations. See <strong>Tab 7 — Stats Guide</strong> for full visual explanations.</div>
         </div>
       </div>
+    </div>
+  </div>
+
+
+
+  <div class="publisher-strip" aria-label="Dashboard reading path">
+    <div class="pub-card">
+      <div class="pub-title">Start here — teacher-friendly data path</div>
+      <div class="pub-main">Read the story first. Then use filters and pop-ups to make the data feel manageable.</div>
+      <div class="pub-sub">Every section is designed to answer one teacher question: What do we notice, who needs support, and what will we try next?</div>
+    </div>
+    <div class="pub-steps">
+      <div class="pub-step"><div class="pub-num">1</div><div><h4>Start calm</h4><p>Read the plain-English story before any chart.</p></div></div>
+      <div class="pub-step"><div class="pub-num">2</div><div><h4>Narrow gently</h4><p>Pick one grade, tier, or focus lens at a time.</p></div></div>
+      <div class="pub-step"><div class="pub-num">3</div><div><h4>Read the visual</h4><p>Hover or tap help notes directly on the data.</p></div></div>
+      <div class="pub-step"><div class="pub-num">4</div><div><h4>Leave with a move</h4><p>Export one practical support cycle.</p></div></div>
     </div>
   </div>
 
@@ -195,6 +383,20 @@ tbody tr:hover td{background:var(--lineSoft)}
         <span class="filter-status" id="filterStatus">Viewing all 347 current-year assessed records.</span>
         <span class="filter-caution" id="filterCaution">Percentages are estimates for planning. Pair with teacher knowledge before deciding actions.</span>
       </div>
+
+      <div class="view-options" aria-label="View and accessibility options">
+        <div>
+          <div class="view-label">View options</div>
+          <div class="filter-caution" style="margin-top:2px">Use these when presenting, printing, or supporting staff who prefer larger text or higher contrast.</div>
+        </div>
+        <div class="view-buttons">
+          <button id="viewLarge" class="view-chip" type="button" onclick="toggleViewMode('large')">Large text</button>
+          <button id="viewContrast" class="view-chip" type="button" onclick="toggleViewMode('contrast')">High contrast</button>
+          <button id="viewReduced" class="view-chip" type="button" onclick="toggleViewMode('reduced')">Reduced motion</button>
+          <button class="view-chip" type="button" onclick="window.print()">Print-ready</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -208,8 +410,15 @@ tbody tr:hover td{background:var(--lineSoft)}
     <button class="tab" data-sec="guide" onclick="showSection('guide')"><span class="tab-n">7</span>Stats Guide</button>
   </div>
 
+  <div class="friendly-use-strip" aria-label="How to use this dashboard">
+    <div class="friendly-use-card primary"><span class="fu-icon">1</span><div><strong>New to the data?</strong><br><span>Start with Understand. It turns the numbers into a short story.</span></div></div>
+    <div class="friendly-use-card"><span class="fu-icon">2</span><div><strong>Need a group?</strong><br><span>Use Find Students. Rows stay anonymized for privacy.</span></div></div>
+    <div class="friendly-use-card"><span class="fu-icon">3</span><div><strong>Want a pattern?</strong><br><span>Use Insights Lab. Pop-ups explain the graph as you work.</span></div></div>
+  </div>
+
+
   <section id="understand" class="section active">
-    <div class="sec-hdr"><h2>Understand the Story</h2><p>Start every data meeting here. Read the plain-English summary aloud before looking at any chart.</p></div>
+    <div class="sec-hdr"><h2>Understand the Story</h2><p>Start with the human-readable story. This section is the “what are we noticing?” page.</p></div>
     <div id="kpiStrip" class="kpi-strip"></div>
     <div class="g2">
       <div style="display:flex;flex-direction:column;gap:13px">
@@ -241,7 +450,7 @@ tbody tr:hover td{background:var(--lineSoft)}
   </section>
 
   <section id="explore" class="section">
-    <div class="sec-hdr"><h2>Explore the Data</h2><p>All charts update with the current filters. Use combinations to surface grade-team patterns.</p></div>
+    <div class="sec-hdr"><h2>Explore the Data</h2><p>Use one filter at a time to keep patterns readable. The goal is insight, not overload.</p></div>
     <div class="g2">
       <div class="card"><div class="ch"><div><div class="ct">Met target by grade</div><div class="cs">SY 2025–2026 attainment</div></div></div><div class="cw cw220"><canvas id="gradeChart"></canvas></div></div>
       <div class="card"><div class="ch"><div><div class="ct">Met target by target year</div><div class="cs">LTML and year-group patterns</div></div></div><div class="cw cw220"><canvas id="targetYearChart"></canvas></div></div>
@@ -263,9 +472,15 @@ tbody tr:hover td{background:var(--lineSoft)}
   </section>
 
   <section id="correlate" class="section">
-    <div class="sec-hdr"><h2>Insights Lab</h2><p>Statistical relationships between variables. Hover or tap the underlined words/numbers for plain-English explanations.</p></div>
+    <div class="sec-hdr"><h2>Insights Lab</h2><p>Choose two data points and the lab will help you read the pattern in plain English.</p></div>
     <div class="callout co-amber" style="margin-bottom:14px">
-      <strong>Quick reminder before you read these:</strong> A <span class="stat-explain" tabindex="0"><span>pattern</span><span class="se-popup"><span class="se-head">Pattern</span><span class="se-body">A pattern means the dots seem to lean in a direction or cluster together. It is a clue for planning, not proof that one thing caused another.</span></span></span> shows what tends to move together. It does not prove <span class="stat-explain" tabindex="0"><span>cause and effect</span><span class="se-popup"><span class="se-head">Cause and effect</span><span class="se-body">Cause and effect would mean one variable made the other happen. This dashboard only shows whether two numbers tend to move together.</span></span></span>. <button class="btn btn-soft btn-sm" style="padding:2px 7px;font-size:10px" onclick="showSection('guide');switchGuide('g-corr')">Full visual guide to r →</button>
+      <strong>Teacher read:</strong> This page is like putting two sticky notes side by side and asking, “Do these seem connected?” A <span class="stat-explain" tabindex="0"><span>pattern</span><span class="se-popup"><span class="se-head">Pattern</span><span class="se-body">A pattern means the dots seem to lean in a direction or cluster together. It is a clue for planning, not proof that one thing caused another.</span></span></span> shows what tends to move together. It does not prove <span class="stat-explain" tabindex="0"><span>cause and effect</span><span class="se-popup"><span class="se-head">Cause and effect</span><span class="se-body">Cause and effect would mean one variable made the other happen. This dashboard only shows whether two numbers tend to move together.</span></span></span>. <button class="btn btn-soft btn-sm" style="padding:2px 7px;font-size:10px" onclick="showSection('guide');switchGuide('g-corr')">Full visual guide to r →</button>
+    </div>
+
+    <div class="reader-strip" aria-label="Correlation lab reading guide">
+      <div class="reader-card"><div class="reader-icon">X</div><div><h4>Choose what goes left-to-right</h4><p>The X-axis is the value you want to compare from low to high.</p></div></div>
+      <div class="reader-card"><div class="reader-icon">Y</div><div><h4>Choose what goes up-and-down</h4><p>The Y-axis is the result or signal you want to read against it.</p></div></div>
+      <div class="reader-card"><div class="reader-icon">r</div><div><h4>Read the overall shape</h4><p>Use r and the trend line as clues. They raise questions; they do not prove causes.</p></div></div>
     </div>
     <div class="insight-grid g3" id="insightGrid" style="margin-bottom:16px"></div>
     <div class="g-sb">
@@ -273,6 +488,12 @@ tbody tr:hover td{background:var(--lineSoft)}
         <div class="ch"><div><div class="ct">Build a scatterplot <span class="stat-explain" tabindex="0"><span style="font-size:11px;color:var(--teal)">?</span><span class="se-popup"><span class="se-head">Scatterplot</span><span class="se-body">Each dot is one student. The graph compares the variable you choose for the X-axis with the variable you choose for the Y-axis.</span></span></span></div><div class="cs">Live — updates with current filters</div></div></div>
         <label class="ctrl-label" style="margin-top:4px">X-axis <span class="stat-explain" tabindex="0"><span style="color:var(--teal)">?</span><span class="se-popup"><span class="se-head">X-axis</span><span class="se-body">The X-axis is the left-to-right variable. A dot farther right has a higher value for the X-axis choice.</span></span></span></label><select id="xVar" onchange="updateCorrelation()" style="margin-bottom:9px"></select>
         <label class="ctrl-label">Y-axis <span class="stat-explain" tabindex="0"><span style="color:var(--teal)">?</span><span class="se-popup"><span class="se-head">Y-axis</span><span class="se-body">The Y-axis is the up-and-down variable. A dot higher on the graph has a higher value for the Y-axis choice.</span></span></span></label><select id="yVar" onchange="updateCorrelation()" style="margin-bottom:12px"></select>
+
+        <div class="corr-mini-guide">
+          <div class="corr-mini"><strong>1. Pick two values</strong><span>Try questions like: Does needed growth connect to meeting target?</span></div>
+          <div class="corr-mini"><strong>2. Look for the dot cloud</strong><span>Rising, falling, or scattered tells you the basic pattern.</span></div>
+          <div class="corr-mini"><strong>3. Plan from groups</strong><span>Use clusters to choose supports; never label individual students from one graph.</span></div>
+        </div>
         <div id="corrLive" class="callout co-blue" style="font-size:12.5px">Select variables above.</div>
         <div class="callout co-amber" style="margin-top:9px;font-size:11.5px"><strong>Exploratory only.</strong> Results change with every filter. Use this to ask better planning questions; never use it as evidence in evaluation or parent communications.</div>
       </div>
@@ -289,7 +510,7 @@ tbody tr:hover td{background:var(--lineSoft)}
   </section>
 
   <section id="find" class="section">
-    <div class="sec-hdr"><h2>Find the Students</h2><p>Generate a manageable action group. All rows are anonymized — pair with your class list at the meeting.</p></div>
+    <div class="sec-hdr"><h2>Find the Students</h2><p>Build a small, workable action group. Rows are anonymized so the view stays planning-focused.</p></div>
     <div class="g-plan">
       <div class="card">
         <div class="ch"><div><div class="ct">Grouping generator</div><div class="cs">Creates a focused group from current filters</div></div></div>
@@ -321,7 +542,7 @@ tbody tr:hover td{background:var(--lineSoft)}
   </section>
 
   <section id="support" class="section">
-    <div class="sec-hdr"><h2>Choose Supports</h2><p>Connect the data pattern to a classroom routine you can start Monday. One repeated routine beats five disconnected activities.</p></div>
+    <div class="sec-hdr"><h2>Choose Supports</h2><p>Turn the pattern into one repeatable classroom routine. Keep the action small enough to actually use.</p></div>
     <div class="g3" id="mondayCards" style="margin-bottom:14px"></div>
     <div class="g2">
       <div class="card"><div class="ch"><div><div class="ct">Support routine builder</div></div></div><div class="stabs" id="supportTabsRow"></div><div class="sbody" id="supportBody"></div></div>
@@ -339,7 +560,7 @@ tbody tr:hover td{background:var(--lineSoft)}
   </section>
 
   <section id="act" class="section">
-    <div class="sec-hdr"><h2>Export the Plan</h2><p>Build copy-ready outputs for meetings or ILT notes. Change filters first, then generate.</p></div>
+    <div class="sec-hdr"><h2>Export the Plan</h2><p>Create a meeting-ready plan after you choose your lens. The output stays anonymized.</p></div>
     <div class="g2">
       <div class="card">
         <div class="ch"><div><div class="ct">What-if scenario planner</div><div class="cs">Estimate impact of short cycles on target rate</div></div></div>
@@ -674,7 +895,53 @@ function bandLabel(x){
 
 DATA.students=buildStudentsFromHeatmap();
 
+
+function setBodyClass(cls,on){
+  if(!document.body||!document.body.classList)return;
+  if(on)document.body.classList.add(cls);else document.body.classList.remove(cls);
+}
+function modeStorage(){try{return window.localStorage||localStorage;}catch(e){return null;}}
+function toggleViewMode(mode){
+  const map={large:'mode-large',contrast:'mode-contrast',reduced:'mode-reduced'};
+  const cls=map[mode];if(!cls||!document.body||!document.body.classList)return;
+  const on=!document.body.classList.contains(cls);
+  setBodyClass(cls,on);
+  const store=modeStorage();
+  if(store){try{store.setItem('accessDash_'+mode,on?'1':'0');}catch(e){}}
+  updateViewButtons();
+  setTimeout(()=>Object.values(charts||{}).forEach(c=>c&&c.resize&&c.resize()),80);
+}
+function applySavedViewModes(){
+  const store=modeStorage();
+  ['large','contrast','reduced'].forEach(mode=>{
+    const cls={large:'mode-large',contrast:'mode-contrast',reduced:'mode-reduced'}[mode];
+    let on=false;
+    if(store){try{on=store.getItem('accessDash_'+mode)==='1';}catch(e){on=false;}}
+    setBodyClass(cls,on);
+  });
+  updateViewButtons();
+}
+function updateViewButtons(){
+  const map={Large:'mode-large',Contrast:'mode-contrast',Reduced:'mode-reduced'};
+  Object.entries(map).forEach(([key,cls])=>{
+    const btn=document.getElementById('view'+key);
+    if(btn&&btn.classList){if(document.body.classList.contains(cls))btn.classList.add('active');else btn.classList.remove('active');}
+  });
+}
+function regressionLinePoints(pts){
+  const clean=pts.filter(p=>p&&isFinite(p.x)&&isFinite(p.y));
+  if(clean.length<3)return [];
+  const mx=clean.reduce((a,p)=>a+p.x,0)/clean.length,my=clean.reduce((a,p)=>a+p.y,0)/clean.length;
+  let num=0,den=0;clean.forEach(p=>{num+=(p.x-mx)*(p.y-my);den+=(p.x-mx)*(p.x-mx)});
+  if(!den)return [];
+  const m=num/den,b=my-m*mx;
+  const minX=Math.min(...clean.map(p=>p.x)),maxX=Math.max(...clean.map(p=>p.x));
+  if(minX===maxX)return [];
+  return [{x:minX,y:m*minX+b},{x:maxX,y:m*maxX+b}];
+}
+
 function init(){
+  applySavedViewModes();
   populateFilters();
   populateVarSelectors();
   buildStaticCharts();
@@ -1038,7 +1305,7 @@ function renderInsightCards(){
 function renderCorrTable(){
   const el=document.getElementById('corrTableWrap');if(!el)return;
   const plainMeaning = c => {const dir = c.r >= 0 ? 'higher together' : 'opposite direction';return `${statStrengthLabel(c.r)}; values tend to move ${dir}. ${statTeacherUse(c.r)}`;};
-  el.innerHTML=`<div class="tbl-wrap"><table><thead><tr><th>Pattern</th><th>Plain-English read</th><th>Strength</th><th>Chance check</th><th>n</th><th>Teacher use</th></tr></thead><tbody>${DATA.correlations.map(c=>{const a=Math.abs(c.r),r2=(a*a*100).toFixed(1)+'%';return`<tr><td><strong>${c.predictor}</strong><br><span style="color:var(--muted);font-size:11px">→ ${c.outcome}</span></td><td style="font-size:11.5px;color:var(--slate);line-height:1.5">${plainMeaning(c)}</td><td>${seR(c.r,c.n,c.predictor,c.outcome)}<br><span style="font-size:10.5px;color:var(--muted)">explains ${r2}</span></td><td>${seP(c.pLabel)}</td><td>${c.n}</td><td style="font-size:11px;color:var(--slate)">${statTeacherUse(c.r)}</td></tr>`;}).join('')}</tbody></table></div>`;
+  el.innerHTML=`<div class="tbl-wrap tip-table"><table><thead><tr><th>Pattern</th><th>Plain-English read</th><th>Strength</th><th>Chance check</th><th>n</th><th>Teacher use</th></tr></thead><tbody>${DATA.correlations.map(c=>{const a=Math.abs(c.r),r2=(a*a*100).toFixed(1)+'%';return`<tr><td><strong>${c.predictor}</strong><br><span style="color:var(--muted);font-size:11px">→ ${c.outcome}</span></td><td style="font-size:11.5px;color:var(--slate);line-height:1.5">${plainMeaning(c)}</td><td>${seR(c.r,c.n,c.predictor,c.outcome)}<br><span style="font-size:10.5px;color:var(--muted)">explains ${r2}</span></td><td>${seP(c.pLabel)}</td><td>${c.n}</td><td style="font-size:11px;color:var(--slate)">${statTeacherUse(c.r)}</td></tr>`;}).join('')}</tbody></table></div>`;
 }
 
 function pearson(arr,xk,yk){
@@ -1052,12 +1319,13 @@ function updateCorrelation(){
   const arr=filtered(),xk=document.getElementById('xVar').value,yk=document.getElementById('yVar').value;
   const xLab=corrLabel(xk),yLab=corrLabel(yk);
   const pts=arr.filter(s=>val(s,xk)!=null&&val(s,yk)!=null).map(s=>({x:val(s,xk),y:val(s,yk),met:s.met}));
-  mkChart('scatterChart',{type:'scatter',data:{datasets:[{data:pts,backgroundColor:pts.map(p=>p.met?'rgba(12,110,88,.65)':'rgba(155,58,29,.65)'),borderColor:'#fff',borderWidth:1,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:xLab,font:{size:11}},grid:{color:'rgba(0,0,0,.05)'}},y:{title:{display:true,text:yLab,font:{size:11}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+  const trendPts=regressionLinePoints(pts);
+  mkChart('scatterChart',{type:'scatter',data:{datasets:[{label:'Students',data:pts,backgroundColor:pts.map(p=>p.met?'rgba(12,110,88,.68)':'rgba(155,58,29,.68)'),borderColor:'#fff',borderWidth:1,pointRadius:4,hoverRadius:6},{label:'Trend line',data:trendPts,showLine:true,fill:false,pointRadius:0,hoverRadius:0,borderColor:'rgba(23,40,58,.55)',borderWidth:2,borderDash:[6,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){const p=ctx.raw||{};return ctx.dataset.label==='Trend line'?'Trend line':`${xLab}: ${Number(p.x).toFixed(2)} · ${yLab}: ${Number(p.y).toFixed(2)}`;}}}},scales:{x:{title:{display:true,text:xLab,font:{size:11,weight:'600'}},grid:{color:'rgba(0,0,0,.05)'}},y:{title:{display:true,text:yLab,font:{size:11,weight:'600'}},grid:{color:'rgba(0,0,0,.05)'}}}}});
   const r=pearson(arr,xk,yk),rDisp=r.r===null?'—':(r.r>=0?'+':'')+r.r.toFixed(3);
   const sub=document.getElementById('scatterSub');
   sub.innerHTML=`${corrTip(xLab,'X-axis',`Left to right: dots farther right have a higher value for ${xLab}.`)} → ${corrTip(yLab,'Y-axis',`Up and down: dots higher on the graph have a higher value for ${yLab}.`)} · ${corrTip('r = '+rDisp,'r value',r.r===null?'Not enough students in this filtered view.':'This summarizes how clearly the dots lean upward or downward. Near 0 = weak pattern; near +1 or −1 = stronger pattern.')} · ${corrTip('n='+r.n,'n value',`This graph is using ${r.n} students from the current filters. Larger n is more stable.`)}`;
   const live=document.getElementById('corrLive');
-  if(r.r!==null){const a=Math.abs(r.r),r2=(a*a*100).toFixed(0);live.innerHTML=`<strong>Live pattern = ${seR(r.r,r.n,xk,yk)}</strong> — ${corrTip(statStrengthLabel(r.r),'Pattern strength','This tells how organized the dot cloud is. Stronger does not mean caused by. It only means the two values move together more clearly.')}<br>${corrDirectionText(r.r,xLab,yLab)} ${corrTip('Rough shared pattern: about '+r2+'%','Shared pattern','This is a rough way to say how much of the up-and-down spread lines up with the left-to-right spread. It is not a percent of students and not proof of cause.')} ${corrTip('Teacher move','Teacher move',corrTeacherMove(r.r,xLab,yLab))}<br><span style="font-size:11px">Exploratory — changes with every filter. Use it to ask better questions, not to prove cause and effect.</span>`;}
+  if(r.r!==null){const a=Math.abs(r.r),r2=(a*a*100).toFixed(0);live.innerHTML=`<strong>Live pattern = ${seR(r.r,r.n,xk,yk)}</strong> — ${corrTip(statStrengthLabel(r.r),'Pattern strength','This tells how organized the dot cloud is. Stronger does not mean caused by. It only means the two values move together more clearly.')}<br>${corrDirectionText(r.r,xLab,yLab)} ${corrTip('Rough shared pattern: about '+r2+'%','Shared pattern','This is a rough way to say how much of the up-and-down spread lines up with the left-to-right spread. It is not a percent of students and not proof of cause.')}<div class="corr-readout"><div class="readout-pill"><strong>Teacher move:</strong> ${corrTip('Use the cluster, not one dot','Teacher move',corrTeacherMove(r.r,xLab,yLab))} Look for groups of red dots or outliers that deserve a closer instructional conversation.</div><div class="readout-pill"><strong>Safe conclusion:</strong> This graph can show a pattern in the current filtered group. It cannot explain why the pattern happened by itself.</div></div>`;}
   else{live.innerHTML='<strong>Live pattern:</strong> Not enough data in the current filter to read a reliable pattern.';}
 }
 
