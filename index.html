@@ -116,7 +116,9 @@ tbody tr:hover td{background:var(--lineSoft)}
 .ibtn{border:0;background:var(--lineSoft);border-radius:50%;width:22px;height:22px;font-size:11.5px;color:var(--muted);font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;cursor:help}.ibtn:hover{background:var(--blue);color:#fff}
 .stat-explain{display:inline-flex;align-items:center;gap:0;border-bottom:1.5px dashed var(--teal2);cursor:help;position:relative}
 .stat-explain .se-popup{visibility:hidden;opacity:0;position:absolute;z-index:300;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);width:280px;background:var(--navy);color:#fff;border-radius:14px;padding:14px 16px;font-size:12px;line-height:1.6;font-family:var(--font-b);font-weight:400;font-style:normal;box-shadow:0 12px 36px rgba(0,0,0,.32);pointer-events:none;transition:opacity .18s ease,visibility .18s ease;text-align:left;white-space:normal}
-.stat-explain:hover .se-popup{visibility:visible;opacity:1}.stat-explain .se-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--navy)}
+.stat-explain:hover .se-popup,.stat-explain:focus .se-popup,.stat-explain:focus-within .se-popup{visibility:visible;opacity:1}.stat-explain .se-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--navy)}
+.info-dot{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--lineSoft);color:var(--teal);font-size:11px;font-weight:800;margin-left:5px;border:1px solid var(--line)}
+.corr-mini-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.corr-mini-row .stat-explain{background:rgba(255,255,255,.55);border:1px solid rgba(42,92,171,.12);border-radius:999px;padding:3px 8px;font-size:11px;font-weight:700}.corr-teacher-note{margin-top:9px;padding:9px 11px;background:rgba(255,255,255,.52);border:1px solid rgba(42,92,171,.14);border-radius:10px;font-size:11.5px;line-height:1.5}
 .se-head{font-weight:700;font-size:13px;color:#6DDAB0;margin-bottom:6px;display:block}.se-val{font-family:var(--font-m);font-size:16px;color:#F2C15B;display:block;margin:3px 0}.se-body{font-size:11.5px;line-height:1.6;color:rgba(255,255,255,.82)}
 .guide-layout{display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:start}.guide-nav{position:sticky;top:75px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:var(--shadow-sm)}.gn-item{display:flex;width:100%;border:0;background:none;text-align:left;padding:9px 11px;border-radius:11px;font-size:12.5px;font-weight:600;color:var(--slate);cursor:pointer;transition:all .15s;align-items:center;gap:8px}.gn-item:hover{background:var(--lineSoft);color:var(--navy)}.gn-item.active{background:var(--navy);color:#fff}.gn-icon{font-size:15px;flex-shrink:0}.gp{display:none}.gp.active{display:block}
 .gc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:13px}.gc h3{font-family:var(--font-d);font-size:19px;margin-bottom:4px}.gc .gc-sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}.gc p{font-size:13px;color:var(--slate);line-height:1.65;margin-bottom:10px}.gc h4{font-size:13px;font-weight:700;color:var(--navy);margin:14px 0 6px}.gc ul,.gc ol{margin-left:18px;font-size:13px;color:var(--slate);line-height:1.65}.gc li{margin-bottom:5px}.gc strong{color:var(--navy)}
@@ -263,21 +265,21 @@ tbody tr:hover td{background:var(--lineSoft)}
   </section>
 
   <section id="correlate" class="section">
-    <div class="sec-hdr"><h2>Insights Lab</h2><p>Statistical relationships between variables. Every number links to a plain-English explanation.</p></div>
+    <div class="sec-hdr"><h2>Insights Lab</h2><p>Choose two variables, then hover or tap the underlined labels and values to read the graph in plain English.</p></div>
     <div class="callout co-amber" style="margin-bottom:14px">
       <strong>Quick reminder before you read these:</strong> A pattern shows what tends to move together. It does not prove cause and effect. <button class="btn btn-soft btn-sm" style="padding:2px 7px;font-size:10px" onclick="showSection('guide');switchGuide('g-corr')">Full visual guide to r →</button>
     </div>
     <div class="insight-grid g3" id="insightGrid" style="margin-bottom:16px"></div>
     <div class="g-sb">
       <div class="card">
-        <div class="ch"><div><div class="ct">Build a scatterplot</div><div class="cs">Live — updates with current filters</div></div></div>
-        <label class="ctrl-label" style="margin-top:4px">X-axis</label><select id="xVar" onchange="updateCorrelation()" style="margin-bottom:9px"></select>
-        <label class="ctrl-label">Y-axis</label><select id="yVar" onchange="updateCorrelation()" style="margin-bottom:12px"></select>
+        <div class="ch"><div><div class="ct">Build a scatterplot <span class="stat-explain" tabindex="0"><span class="info-dot">?</span><span class="se-popup"><span class="se-head">Scatterplot</span><span class="se-body">This graph puts each student on the chart as one dot. The x-axis controls left-to-right placement. The y-axis controls up-and-down placement.</span></span></span></div><div class="cs">Live — updates with current filters</div></div></div>
+        <label class="ctrl-label" style="margin-top:4px">X-axis <span class="stat-explain" tabindex="0"><span class="info-dot">?</span><span class="se-popup"><span class="se-head">X-axis</span><span class="se-body">This is the information shown from left to right. Students farther right have a higher value for the x-axis choice.</span></span></span></label><select id="xVar" onchange="updateCorrelation()" style="margin-bottom:9px"></select>
+        <label class="ctrl-label">Y-axis <span class="stat-explain" tabindex="0"><span class="info-dot">?</span><span class="se-popup"><span class="se-head">Y-axis</span><span class="se-body">This is the information shown from bottom to top. Students higher on the graph have a higher value for the y-axis choice.</span></span></span></label><select id="yVar" onchange="updateCorrelation()" style="margin-bottom:12px"></select>
         <div id="corrLive" class="callout co-blue" style="font-size:12.5px">Select variables above.</div>
         <div class="callout co-amber" style="margin-top:9px;font-size:11.5px"><strong>Exploratory only.</strong> Results change with every filter. Never use as evidence in evaluation or parent communications.</div>
       </div>
       <div class="card">
-        <div class="ch"><div><div class="ct">Scatterplot</div><div class="cs" id="scatterSub">Select variables to begin.</div></div></div>
+        <div class="ch"><div><div class="ct">Scatterplot <span class="stat-explain" tabindex="0"><span class="info-dot">?</span><span class="se-popup"><span class="se-head">How to read the dots</span><span class="se-body">Each dot is one student. Look for the overall shape: upward, downward, or scattered. Green dots met the target; red dots did not.</span></span></span></div><div class="cs" id="scatterSub">Select variables to begin.</div></div></div>
         <div class="cw cw360"><canvas id="scatterChart"></canvas></div>
         <div class="sleg"><span><span class="sleg-dot" style="background:var(--teal)"></span>Met target</span><span><span class="sleg-dot" style="background:var(--red)"></span>Did not meet</span></div>
       </div>
@@ -607,7 +609,7 @@ const SUPPORTS={
   extend:{label:'Sustain / extend',title:'Sustain and Extend Growth',summary:'For students who met target or showed strong growth. Push precision and complexity.',moves:['Require evidence, domain vocabulary, and complete justification in every written and oral response.','Assign structured leadership roles in partner talk — not informal helpers.','Use extension prompts requiring transfer, comparison, or multi-step explanation.'],evidence:'More precise written and oral explanations demonstrating transferable academic vocabulary.'}
 };
 
-let charts={}, activeWF=0, activeSupport='quick', guideChartsBuilt=false;
+let charts={}, activeWF=0, activeSupport='quick', guideChartsBuilt=false, corrCoachMode='overview';
 
 function buildStudentsFromHeatmap(){
   const students=[];
@@ -757,7 +759,7 @@ function tierClass(t){if(t==='LTML intensive')return'p-purple';if(t==='Declined'
 function se(displayVal, title, simpleExplain, optionalMath, guideId) {
   const mathPart = optionalMath ? `<div style="font-family:var(--font-m);font-size:11.5px;color:rgba(255,255,255,.65);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,.12)">${optionalMath}</div>` : '';
   const guidePart = guideId ? `<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.12)"><button style="background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.8);font-size:10px;padding:3px 8px;border-radius:6px;cursor:pointer" onclick="showSection('guide');switchGuide('${guideId}')">Full explanation →</button></div>` : '';
-  return `<span class="stat-explain"><span>${displayVal}</span><span class="se-popup"><span class="se-head">${title}</span><span class="se-val">${displayVal}</span><span class="se-body">${simpleExplain}</span>${mathPart}${guidePart}</span></span>`;
+  return `<span class="stat-explain" tabindex="0"><span>${displayVal}</span><span class="se-popup"><span class="se-head">${title}</span><span class="se-val">${displayVal}</span><span class="se-body">${simpleExplain}</span>${mathPart}${guidePart}</span></span>`;
 }
 function sePct(pctVal, n, label) {
   const ci = ci95(pctVal/100, n);
@@ -790,7 +792,7 @@ function seR(r, n, predictor, outcome) {
   const r2 = (a*a*100).toFixed(0);
   const hasOverlap = ['score','growth','gap','target','met'].some(w => String(predictor).toLowerCase().includes(w));
   const warn = hasOverlap ? `<div style="margin-top:6px;font-size:10.5px;color:rgba(255,200,50,.85)">⚠️ Some numbers are calculated from each other, so part of the pattern may be built into the math.</div>` : '';
-  return `<span class="stat-explain"><span>${rDisp}</span><span class="se-popup"><span class="se-head">Pattern strength</span><span class="se-val">${rDisp}</span><span class="se-body"><strong>${statStrengthLabel(r)}</strong><br>${direction}<br><br><strong>Teacher read:</strong> ${statTeacherUse(r)}<br><strong>Explained variation:</strong> about ${r2}%.</span><div style="font-family:var(--font-m);font-size:11px;margin-top:5px;color:rgba(255,255,255,.6)">n = ${n} students · r² ≈ ${r2}%</div>${warn}<div style="margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,.12)"><button style="background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.8);font-size:10px;padding:3px 8px;border-radius:6px;cursor:pointer" onclick="showSection('guide');switchGuide('g-corr')">Explain patterns →</button></div></span></span>`;
+  return `<span class="stat-explain" tabindex="0"><span>${rDisp}</span><span class="se-popup"><span class="se-head">Pattern strength</span><span class="se-val">${rDisp}</span><span class="se-body"><strong>${statStrengthLabel(r)}</strong><br>${direction}<br><br><strong>Teacher read:</strong> ${statTeacherUse(r)}<br><strong>Explained variation:</strong> about ${r2}%.</span><div style="font-family:var(--font-m);font-size:11px;margin-top:5px;color:rgba(255,255,255,.6)">n = ${n} students · r² ≈ ${r2}%</div>${warn}<div style="margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,.12)"><button style="background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.8);font-size:10px;padding:3px 8px;border-radius:6px;cursor:pointer" onclick="showSection('guide');switchGuide('g-corr')">Explain patterns →</button></div></span></span>`;
 }
 function seP(pLabel) {
   const sig = pLabel==='< .001'||parseFloat(pLabel)<.05;
@@ -1025,13 +1027,89 @@ function pearson(arr,xk,yk){
   let num=0,dx=0,dy=0;pts.forEach(p=>{const x=p[0]-mx,y=p[1]-my;num+=x*y;dx+=x*x;dy+=y*y});
   return{r:dx&&dy?num/Math.sqrt(dx*dy):null,n};
 }
+function corrOptionLabel(key){
+  const selX=document.getElementById('xVar'),selY=document.getElementById('yVar');
+  const match=[...selX.options,...selY.options].find(o=>o.value===key);
+  return match?match.text:key;
+}
+function corrStrengthWords(r){
+  if(r===null||isNaN(r))return 'not enough data';
+  const a=Math.abs(r);
+  if(a<0.10)return 'no clear pattern';
+  if(a<0.30)return 'a weak pattern';
+  if(a<0.60)return 'a moderate pattern';
+  return 'a strong pattern';
+}
+function corrDirectionWords(r,xLab,yLab){
+  if(r===null||isNaN(r))return 'There are not enough dots to read a pattern.';
+  const a=Math.abs(r);
+  if(a<0.10)return `As ${xLab} changes, ${yLab} does not show a clear up-or-down pattern.`;
+  if(r>0)return `As ${xLab} goes up, ${yLab} tends to go up too.`;
+  return `As ${xLab} goes up, ${yLab} tends to go down.`;
+}
+function corrTeacherMove(r,xLab,yLab){
+  if(r===null||isNaN(r))return 'Keep or widen the filter until there are enough students to read the graph.';
+  const a=Math.abs(r);
+  if(a<0.10)return `Do not plan from the overall pattern alone. Look for small clusters of red dots and use teacher knowledge to identify the barrier.`;
+  if(a<0.30)return `Use this as a question starter. Ask which red-dot cluster needs a repeated support routine, not whether one variable caused the other.`;
+  if(a<0.60)return `Bring this to the team as a planning signal. Look at the students in the most concerning cluster and choose one support to test for two weeks.`;
+  return `Treat this as a major pattern to discuss, then verify with classroom evidence before changing instruction or grouping.`;
+}
+function corrPatternVisual(r){
+  if(r===null||isNaN(r))return 'no readable dot pattern yet';
+  const a=Math.abs(r);
+  if(a<0.10)return 'dots are mostly scattered';
+  if(r>0)return a<0.30?'dots lean slightly upward':a<0.60?'dots form a clear upward cloud':'dots form a strong upward path';
+  return a<0.30?'dots lean slightly downward':a<0.60?'dots form a clear downward cloud':'dots form a strong downward path';
+}
+function updateCorrCoach(){
+  const box=document.getElementById('corrCoachText');
+  if(!box)return;
+  const arr=filtered(),xk=document.getElementById('xVar').value,yk=document.getElementById('yVar').value;
+  const xLab=corrOptionLabel(xk),yLab=corrOptionLabel(yk),r=pearson(arr,xk,yk);
+  const rTxt=r.r===null?'not enough data':(r.r>=0?'+':'')+r.r.toFixed(2);
+  const strength=corrStrengthWords(r.r);
+  const direction=corrDirectionWords(r.r,xLab,yLab);
+  const common=`<div style="font-size:11px;color:var(--slate);margin-top:7px">Current view: <strong>${r.n}</strong> students · r = <strong>${rTxt}</strong> · ${strength}</div>`;
+  if(corrCoachMode==='dots'){
+    box.innerHTML=`<strong>Read the dots:</strong> Each dot is one student. The left-right position shows <strong>${xLab}</strong>. The up-down position shows <strong>${yLab}</strong>. Green dots met the target; red dots did not. If the dots form a clear upward or downward cloud, there is a stronger pattern. If they are scattered everywhere, the pattern is weak.${common}`;
+    return;
+  }
+  if(corrCoachMode==='pattern'){
+    box.innerHTML=`<strong>Pattern strength:</strong> The r number summarizes how organized the dot cloud is. Values near 0 mean little pattern. Values closer to +1 or −1 mean a clearer pattern. Here, the graph shows <strong>${strength}</strong>. ${direction}${common}`;
+    return;
+  }
+  if(corrCoachMode==='teacher'){
+    box.innerHTML=`<strong>Teacher move:</strong> Use this as a question starter. Ask, “Which students are in the red-dot cluster?” and “What support would move this group?” Do not use this graph to prove why something happened or to evaluate a teacher/student. ${direction}${common}`;
+    return;
+  }
+  box.innerHTML=`<strong>What am I seeing?</strong> This graph compares <strong>${xLab}</strong> with <strong>${yLab}</strong> for the students currently in your filters. ${direction} The pattern is <strong>${strength}</strong>, so treat it as a planning signal, not proof of cause and effect.${common}`;
+}
+function setCorrCoach(mode){corrCoachMode=mode;updateCorrCoach();}
 function updateCorrelation(){
   const arr=filtered(),xk=document.getElementById('xVar').value,yk=document.getElementById('yVar').value;
   const pts=arr.filter(s=>val(s,xk)!=null&&val(s,yk)!=null).map(s=>({x:val(s,xk),y:val(s,yk),met:s.met}));
-  mkChart('scatterChart',{type:'scatter',data:{datasets:[{data:pts,backgroundColor:pts.map(p=>p.met?'rgba(12,110,88,.65)':'rgba(155,58,29,.65)'),borderColor:'#fff',borderWidth:1,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:xk,font:{size:11}},grid:{color:'rgba(0,0,0,.05)'}},y:{title:{display:true,text:yk,font:{size:11}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+  mkChart('scatterChart',{type:'scatter',data:{datasets:[{data:pts,backgroundColor:pts.map(p=>p.met?'rgba(12,110,88,.65)':'rgba(155,58,29,.65)'),borderColor:'#fff',borderWidth:1,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{title:{display:true,text:corrOptionLabel(xk),font:{size:11}},grid:{color:'rgba(0,0,0,.05)'}},y:{title:{display:true,text:corrOptionLabel(yk),font:{size:11}},grid:{color:'rgba(0,0,0,.05)'}}}}});
   const r=pearson(arr,xk,yk),rDisp=r.r===null?'—':(r.r>=0?'+':'')+r.r.toFixed(3);
-  document.getElementById('scatterSub').textContent=`${xk} → ${yk} · r = ${rDisp} · n=${r.n}`;
-  if(r.r!==null){const a=Math.abs(r.r),r2=(a*a*100).toFixed(0);document.getElementById('corrLive').innerHTML=`<strong>Live pattern = ${seR(r.r,r.n,xk,yk)}</strong> — ${statStrengthLabel(r.r)}. Explains about ${r2}% of the variation. n = ${r.n} students.<br><span style="font-size:11px">Exploratory — changes with every filter.</span>`;}
+  const xLab=corrOptionLabel(xk),yLab=corrOptionLabel(yk);
+  const sub=document.getElementById('scatterSub');
+  sub.innerHTML=`${xLab} → ${yLab} · ${seR(r.r,r.n,xLab,yLab)} · ${se('n='+r.n,'Number of students shown',`This is how many student dots are included after the current filters. More dots usually make the pattern more trustworthy.`,'','')}`;
+  const live=document.getElementById('corrLive');
+  if(r.r!==null){
+    const teacherMove=corrTeacherMove(r.r,xLab,yLab);
+    live.innerHTML=`<strong>Read this graph:</strong> ${corrDirectionWords(r.r,xLab,yLab)}
+      <div class="corr-mini-row">
+        ${seR(r.r,r.n,xLab,yLab)}
+        ${se(corrStrengthWords(r.r),'Pattern strength',`This describes how organized the dots are. ${corrPatternVisual(r.r)}. A stronger pattern is easier to see; a weak pattern should only start a conversation.`,'Look at the shape of the dot cloud.','g-corr')}
+        ${se('green/red dots','Dot colors','Green dots are students who met the ACCESS target. Red dots are students who did not meet the target. Look for clusters of red dots that may need the same support.','','')}
+        ${se('x/y axes','Axes','The x-axis is left to right. The y-axis is bottom to top. Changing either dropdown changes what the graph is comparing.','','')}
+      </div>
+      <div class="corr-teacher-note"><strong>${se('Teacher move','What should I do with this?',teacherMove,'Use the graph to choose a question, group, or support routine — not to prove cause.','')}</strong> ${teacherMove}</div>
+      <div style="font-size:11px;color:var(--slate);margin-top:7px">${se('Important limit','What not to conclude','This graph can show a pattern, but it cannot prove why the pattern happened. Use it with classroom evidence and teacher knowledge.','','g-limits')}</div>`;
+  }else{
+    live.innerHTML=`<strong>Plain-English read:</strong> Not enough data in the current filter to read a reliable pattern. ${se('Why?','Not enough data','A scatterplot needs enough dots to show a pattern. Try clearing one filter or choosing a larger group.','','')}`;
+  }
+  updateCorrCoach();
 }
 
 function updateScenario(){
@@ -1081,7 +1159,7 @@ ${extra?`\nAdded routine:\n${extra}\n`:''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FOCUS GROUP (Student / Grade / Target yr / Tier / Gap / Growth)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-${group.map(s=>`  ${s.id} / Gr${s.grade} / ${s.targetYear} / ${s.tier} / gap ${s.gap>=0?'+':''}${s.gap.toFixed(1)} / growth ${s.growth>=0?'+':''}${s.growth.toFixed(1)}`).join('\n')}`;
+${group.map((s,i)=>`  Student ${i+1} / Gr${s.grade} / ${s.targetYear} / ${s.tier} / gap ${s.gap>=0?'+':''}${s.gap.toFixed(1)} / growth ${s.growth>=0?'+':''}${s.growth.toFixed(1)}`).join('\n')}`;
 }
 function buildBrief(){
   const arr=filtered(),uf=isUnfiltered();
